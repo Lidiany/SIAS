@@ -1,0 +1,23 @@
+CREATE TABLE municipio (
+	id BIGSERIAL NOT NULL,
+	nome VARCHAR (40) NOT NULL,
+	uf_fk bigint NOT NULL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE uf (
+	id BIGSERIAL NOT NULL,
+	nome VARCHAR (2) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE tipoespecificidadesocial (
+	id BIGSERIAL NOT NULL,
+	descricao VARCHAR (50) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+ALTER TABLE municipio ADD CONSTRAINT municipio_uf_fk
+FOREIGN KEY (uf_fk) REFERENCES uf(id)
+ON UPDATE CASCADE ON DELETE SET NULL; 
+
