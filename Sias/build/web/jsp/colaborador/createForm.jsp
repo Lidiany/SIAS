@@ -17,12 +17,13 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="inputNumerorg">RG:</label>
+        <label class="control-label" for="inputNumerorg">Número RG:</label>
         <div class="controls">
             <mtw:input type="text" id="inputNumerorg" name="numerorg"/>
             <span class="label label-important">${error.numerorg}</span>
         </div>
     </div>
+
     <div class="control-group">
         <label class="control-label" for="inputOrgaoexpedidor">Órgão Expedidor:</label>
         <div class="controls">
@@ -33,15 +34,15 @@
     <div class="control-group">
         <label class="control-label" for="inputDataemissao">Data Emissão:</label>
         <div class="controls">
-            <mtw:input type="text" id="inputDataemissao" name="dataemissao"/>
+            <mtw:inputDate dateFormat="dd/mm/yyyy"  id="inputDataemissao" name="dataemissao"/>
             <span class="label label-important">${error.dataemissao}</span>
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="inputSigla">UF:</label>
+        <label class="control-label" for="inputUfemissao">UF Emissão:</label>
         <div class="controls">
-            <mtw:select name="uf.id" list="ufOptions" emptyField="true" emptyFieldValue="Selecione..."/>
-            <span class="label label-important">${error.uf.id}</span>
+            <mtw:input type="text" id="inputUfemissao" name="ufemissao"/>
+            <span class="label label-important">${error.ufemissao}</span>
         </div>
     </div>
     <div class="control-group">
@@ -93,13 +94,22 @@
             <span class="label label-important">${error.bairro}</span>
         </div>
     </div>
+
     <div class="control-group">
-        <label class="control-label" for="inputMunicipio">Município:</label>
+        <label class="control-label" for="inputNome">Município:</label>
         <div class="controls">
             <mtw:select name="municipio.id" list="municipioOptions" emptyField="true" emptyFieldValue="Selecione..."/>
             <span class="label label-important">${error.municipio.id}</span>
         </div>
-    </div>
+    </div> 
+    <div class="control-group">
+        <label class="control-label" for="inputNome">UF:</label>
+        <div class="controls">
+            <mtw:select name="uf.id" list="ufOptions" emptyField="true" emptyFieldValue="Selecione..."/>
+            <span class="label label-important">${error.uf.id}</span>
+        </div>
+    </div> 
+
     <div class="control-group">
         <label class="control-label" for="inputCep">CEP:</label>
         <div class="controls">
@@ -108,12 +118,13 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="inputUnidadeatendimento">Unidade de Atendimento</label>
+        <label class="control-label" for="inputNome">Unidade Atendimento:</label>
         <div class="controls">
-            <mtw:select name="unidadeatendimento.id" list="unidadeatendimentoOptions" emptyField="true" emptyFieldValue="Selecione..."/>
-            <span class="label label-important">${error.unidadeatendimento.id}</span>
+            <mtw:select name="unidadeatendimento.id" list="unidadeAtendimentoOptions" emptyField="true" emptyFieldValue="Selecione..."/>
+            <span class="label label-important">${error.uf.id}</span>
         </div>
-    </div>
+    </div> 
+
 
 
     <div class="control-group">

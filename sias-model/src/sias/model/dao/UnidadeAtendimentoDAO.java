@@ -10,16 +10,18 @@ import java.util.List;
 import java.util.Map;
 import sias.model.base.BaseDAO;
 import sias.model.pojo.Municipio;
+import sias.model.pojo.Uf;
 import sias.model.pojo.UnidadeAtendimento;
 
 public class UnidadeAtendimentoDAO implements BaseDAO<UnidadeAtendimento> {
     
     public static final String CRITERION_NOME_I_LIKE = "1";
     public static final String CRITERION_MUNICIPIO_ID_EQ = "2";
+    public static final String CRITERION_UF_ID_EQ = "3";
     
     @Override
     public void create(UnidadeAtendimento e, Connection conn) throws Exception {
-        String sql = "INSERT INTO unidadeatendimento(nome, numerounidade, responsavel, telefone, logradouro, numero, complementoendereco, bairro, cep, municipio_fk) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
+        String sql = "INSERT INTO unidadeatendimento(nome, numerounidade, responsavel, telefone, logradouro, numero, complementoendereco, bairro, cep, municipio_fk, uf_fk) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
         PreparedStatement ps = conn.prepareStatement(sql);
         int i = 0;
         ps.setString(++i, e.getNome());
@@ -34,8 +36,14 @@ public class UnidadeAtendimentoDAO implements BaseDAO<UnidadeAtendimento> {
         if (e.getMunicipio() != null) {
             ps.setLong(++i, e.getMunicipio().getId());
         } else {
-            ps.setNull(++i, Types.SMALLINT);
+            ps.setNull(++i, Types.BIGINT);
         }
+        if (e.getUf() != null){
+            ps.setLong(++i, e.getUf().getId());
+        } else{
+            ps.setNull(++i, Types.BIGINT);
+        }
+        
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             e.setId(rs.getLong("id"));
@@ -47,7 +55,7 @@ public class UnidadeAtendimentoDAO implements BaseDAO<UnidadeAtendimento> {
     @Override
     public UnidadeAtendimento readById(Long id, Connection conn) throws Exception {
         UnidadeAtendimento e = null;
-        String sql = "SELECT * FROM unidadeAtendimento WHERE id=?";
+        String sql = "SELECT unidadeatendimento.*, municipio.id as municipio_id, municipio.nome as municipio_nome, uf.id as uf_id, uf.nome as uf_nome, uf.sigla as uf_sigla FROM unidadeatendimento LEFT JOIN municipio ON unidadeatendimento.municipio_fk = municipio.id LEFT JOIN uf ON unidadeatendimento.uf_fk = uf.id WHERE unidadeatendimento.id=?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setLong(1, id);
         ResultSet rs = ps.executeQuery();
@@ -55,12 +63,12 @@ public class UnidadeAtendimentoDAO implements BaseDAO<UnidadeAtendimento> {
             e = new UnidadeAtendimento();
             e.setId(rs.getLong("id"));
             e.setNome(rs.getString("nome"));
-            e.setNumeroUnidade(rs.getString("numeroUnidade"));
+            e.setNumeroUnidade(rs.getString("numerounidade"));
             e.setResponsavel(rs.getString("responsavel"));
             e.setTelefone(rs.getString("telefone"));
             e.setLogradouro(rs.getString("logradouro"));
             e.setNumero(rs.getString("numero"));
-            e.setComplementoEndereco(rs.getString("complementoEndereco"));
+            e.setComplementoEndereco(rs.getString("complementoendereco"));
             e.setBairro(rs.getString("bairro"));
             e.setCep(rs.getString("cep"));
             
@@ -68,6 +76,12 @@ public class UnidadeAtendimentoDAO implements BaseDAO<UnidadeAtendimento> {
             municipio.setId(rs.getLong("municipio_id"));
             municipio.setNome(rs.getString("municipio_nome"));
             e.setMunicipio(municipio);
+            
+            Uf uf = new Uf();
+            uf.setId(rs.getLong("uf_id"));
+            uf.setNome(rs.getString("uf_nome"));
+            uf.setSigla(rs.getString("uf_sigla"));
+            e.setUf(uf);
         }
         rs.close();
         ps.close();
@@ -77,16 +91,21 @@ public class UnidadeAtendimentoDAO implements BaseDAO<UnidadeAtendimento> {
     @Override
     public List<UnidadeAtendimento> readByCriteria(Map<String, Object> criteria, Connection conn) throws Exception {
         List<UnidadeAtendimento> lista = new ArrayList<UnidadeAtendimento>();
-        String sql = "SELECT * FROM unidadeAtendimento WHERE 1=1";
+        String sql = "SELECT unidadeatendimento.*, municipio.id as municipio_id, municipio.nome as municipio_nome, uf.id as uf_id, uf.nome as uf_nome, uf.sigla as uf_sigla FROM unidadeatendimento LEFT JOIN uf ON unidadeatendimento.uf_fk = uf.id LEFT JOIN municipio ON unidadeatendimento.municipio_fk = municipio.id WHERE 1=1";
         
         String criterionNomeILike = (String) criteria.get(CRITERION_NOME_I_LIKE);
         if (criterionNomeILike != null && !criterionNomeILike.trim().isEmpty()) {
-            sql += " AND nome ILIKE '%" + criterionNomeILike + "%'";
+            sql += " AND unidadeatendimento.nome ILIKE '%" + criterionNomeILike + "%'";
         }
         
         Long criterionMunicipioIdEq = (Long) criteria.get(CRITERION_MUNICIPIO_ID_EQ);
         if (criterionMunicipioIdEq != null && criterionMunicipioIdEq > 0) {
             sql += " AND municipio_fk ='" + criterionMunicipioIdEq + "'";
+        }
+        
+        Long criterionUfIdEq = (Long) criteria.get(CRITERION_UF_ID_EQ);
+        if (criterionUfIdEq != null && criterionUfIdEq > 0) {
+            sql += " AND uf_fk ='" + criterionUfIdEq + "'";
         }
         
         Statement s = conn.createStatement();
@@ -95,12 +114,12 @@ public class UnidadeAtendimentoDAO implements BaseDAO<UnidadeAtendimento> {
             UnidadeAtendimento unidadeAtendimento = new UnidadeAtendimento();
             unidadeAtendimento.setId(rs.getLong("id"));
             unidadeAtendimento.setNome(rs.getString("nome"));
-            unidadeAtendimento.setNumeroUnidade(rs.getString("numeroUnidade"));
+            unidadeAtendimento.setNumeroUnidade(rs.getString("numerounidade"));
             unidadeAtendimento.setResponsavel(rs.getString("responsavel"));
             unidadeAtendimento.setTelefone(rs.getString("telefone"));
             unidadeAtendimento.setLogradouro(rs.getString("logradouro"));
             unidadeAtendimento.setNumero(rs.getString("numero"));
-            unidadeAtendimento.setComplementoEndereco(rs.getString("complementoEndereco"));
+            unidadeAtendimento.setComplementoEndereco(rs.getString("complementoendereco"));
             unidadeAtendimento.setBairro(rs.getString("bairro"));
             unidadeAtendimento.setCep(rs.getString("cep"));
             
@@ -108,6 +127,12 @@ public class UnidadeAtendimentoDAO implements BaseDAO<UnidadeAtendimento> {
             municipio.setId(rs.getLong("municipio_id"));
             municipio.setNome(rs.getString("municipio_nome"));
             unidadeAtendimento.setMunicipio(municipio);
+            
+            Uf uf = new Uf();
+            uf.setId(rs.getLong("uf_id"));
+            uf.setNome(rs.getString("uf_nome"));
+            uf.setSigla(rs.getString("uf_sigla"));
+            unidadeAtendimento.setUf(uf);
             
             lista.add(unidadeAtendimento);
         }
@@ -118,7 +143,7 @@ public class UnidadeAtendimentoDAO implements BaseDAO<UnidadeAtendimento> {
     
     @Override
     public void update(UnidadeAtendimento e, Connection conn) throws Exception {
-        String sql = "UPDATE unidadeAtendimento nome=?, numeroUnidade=?, responsavel=?, telefone=?, logradouro=?, numero=?, complementoEndereco=?, bairro=?, cep=?, municipiofk=? WHERE id=?;";
+        String sql = "UPDATE unidadeatendimento nome=?, numerounidade=?, responsavel=?, telefone=?, logradouro=?, numero=?, complementoendereco=?, bairro=?, cep=?, municipio_fk=?, uf_fk=? WHERE id=?;";
         PreparedStatement ps = conn.prepareStatement(sql);
         int i = 0;
         ps.setString(++i, e.getNome());
@@ -133,7 +158,12 @@ public class UnidadeAtendimentoDAO implements BaseDAO<UnidadeAtendimento> {
         if (e.getMunicipio() != null) {
             ps.setLong(++i, e.getMunicipio().getId());
         } else {
-            ps.setNull(++i, Types.SMALLINT);
+            ps.setNull(++i, Types.BIGINT);
+        }
+        if (e.getUf() != null){
+            ps.setLong(++i, e.getUf().getId());
+        } else{
+            ps.setNull(++i, Types.BIGINT);
         }
         ps.setLong(++i, e.getId());
         ps.execute();
@@ -143,7 +173,7 @@ public class UnidadeAtendimentoDAO implements BaseDAO<UnidadeAtendimento> {
     @Override
     public void delete(Long id, Connection conn) throws Exception {
         Statement st = conn.createStatement();
-        st.execute("DELETE FROM unidadeAtendimento WHERE id =" + id);
+        st.execute("DELETE FROM unidadeatendimento WHERE id =" + id);
         st.close();
     }
     

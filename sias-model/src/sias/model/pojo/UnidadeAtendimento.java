@@ -14,6 +14,7 @@ public class UnidadeAtendimento extends BasePOJO {
     private String bairro;
     private String cep;
     private Municipio municipio;
+    private Uf uf;
     
     public String getNome() {
         return nome;
@@ -93,5 +94,13 @@ public class UnidadeAtendimento extends BasePOJO {
 
     public void setMunicipio(Municipio municipio) {
         this.municipio = municipio;
+    }
+
+    public Uf getUf() {
+        return uf;
+    }
+
+    public void setUf(Uf uf) {
+        this.uf = uf;
     }
 }

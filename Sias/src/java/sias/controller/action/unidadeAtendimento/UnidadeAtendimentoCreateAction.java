@@ -5,6 +5,7 @@ import java.util.Map;
 import org.mentawai.core.BaseAction;
 import sias.model.ServiceLocator;
 import sias.model.pojo.Municipio;
+import sias.model.pojo.Uf;
 import sias.model.pojo.UnidadeAtendimento;
 
 public class UnidadeAtendimentoCreateAction extends BaseAction{
@@ -24,6 +25,7 @@ public class UnidadeAtendimentoCreateAction extends BaseAction{
         form.put("bairro", input.getString("bairro"));
         form.put("cep", input.getString("cep"));
         form.put("municipio.id", input.getLong("municipio.id"));
+        form.put("uf.id", input.getLong("uf.id"));
         Map<String, String> error = ServiceLocator.getUnidadeAtendimentoService().validateForCreate(form);
         if (error == null || error.isEmpty()) {
             UnidadeAtendimento unidadeAtendimento = new UnidadeAtendimento();
@@ -38,6 +40,8 @@ public class UnidadeAtendimentoCreateAction extends BaseAction{
             unidadeAtendimento.setCep((String) form.get("cep"));
             Municipio municipio = ServiceLocator.getMunicipioService().readById((Long) form.get("municipio.id"));
             unidadeAtendimento.setMunicipio(municipio);
+            Uf uf = ServiceLocator.getUfService().readById((Long) form.get("uf.id"));
+            unidadeAtendimento.setUf(uf);
             ServiceLocator.getUnidadeAtendimentoService().create(unidadeAtendimento);
             consequence = SUCCESS;
         }else {

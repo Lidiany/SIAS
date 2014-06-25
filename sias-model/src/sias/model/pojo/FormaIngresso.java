@@ -1,16 +1,13 @@
 package sias.model.pojo;
 
-import java.util.ArrayList;
-import java.util.List;
 import sias.model.base.BasePOJO;
 
 public class FormaIngresso extends BasePOJO {
 
     private String codigo;
     private String descricao;
-    private Boolean ativo;
-    private List<Pessoa> pessoas = new ArrayList<Pessoa>();
-
+    private String ativo;
+    
     public String getCodigo() {
         return codigo;
     }
@@ -27,20 +24,13 @@ public class FormaIngresso extends BasePOJO {
         this.descricao = descricao;
     }
 
-    public Boolean getAtivo() {
+    public String getAtivo() {
         return ativo;
     }
 
-    public void setAtivo(Boolean ativo) {
+    public void setAtivo(String ativo) {
         this.ativo = ativo;
     }
 
-    public List<Pessoa> getPessoas() {
-        return pessoas;
-    }
-
-    public void setPessoas(List<Pessoa> pessoas) {
-        this.pessoas = pessoas;
-    }
 
 }

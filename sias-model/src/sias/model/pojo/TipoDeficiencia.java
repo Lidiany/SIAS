@@ -6,7 +6,7 @@ public class TipoDeficiencia extends BasePOJO {
 
     private String codigo;
     private String descricao;
-    private Boolean ativo;
+    private String ativo;
     private DeficienciaPessoa DeficienciaPessoa;
 
     public String getCodigo() {
@@ -25,11 +25,11 @@ public class TipoDeficiencia extends BasePOJO {
         this.descricao = descricao;
     }
 
-    public Boolean getAtivo() {
+    public String getAtivo() {
         return ativo;
     }
 
-    public void setAtivo(Boolean ativo) {
+    public void setAtivo(String ativo) {
         this.ativo = ativo;
     }
 

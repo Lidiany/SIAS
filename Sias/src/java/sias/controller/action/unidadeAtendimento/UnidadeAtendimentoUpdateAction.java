@@ -24,8 +24,9 @@ public class UnidadeAtendimentoUpdateAction extends BaseAction{
         form.put("bairro", input.getString("unidadeatendimento.bairro"));
         form.put("cep", input.getString("unidadeatendimento.cep"));
         form.put("municipio.id", input.getLong("unidadeatendimento.municipio.id"));
+        form.put("uf.id", input.getLong("unidadeatendimento.uf.id"));
         //Validando
-        Map<String, String> error = ServiceLocator.getMunicipioService().validateForCreate(form);
+        Map<String, String> error = ServiceLocator.getUnidadeAtendimentoService().validateForUpdate(form);
         if (error == null || error.isEmpty()) {
             //Monto o pojo
             UnidadeAtendimento unidadeAtendimento = new UnidadeAtendimento();
@@ -41,6 +42,8 @@ public class UnidadeAtendimentoUpdateAction extends BaseAction{
             unidadeAtendimento.setCep((String) form.get("cep"));
             Long municipioId = (Long) form.get("municipio.id");
             unidadeAtendimento.setMunicipio(ServiceLocator.getMunicipioService().readById(municipioId));
+            Long ufId = (Long) form.get("uf.id");
+            unidadeAtendimento.setUf(ServiceLocator.getUfService().readById(ufId));
             //Persistindo
             ServiceLocator.getUnidadeAtendimentoService().update(unidadeAtendimento);
             consequence = SUCCESS;

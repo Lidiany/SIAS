@@ -16,7 +16,7 @@ public class TipoBeneficioDespesaDAO implements BaseDAO<TipoBeneficioDespesa>{
     
     @Override
     public void create(TipoBeneficioDespesa e, Connection conn) throws Exception {
-        String sql = "INSERT INTO tipoBeneficioDespesa(descricao, tipo) VALUES (?, ?) RETURNING id;";
+        String sql = "INSERT INTO tipobeneficiodespesa(descricao, tipo) VALUES (?, ?) RETURNING id;";
         PreparedStatement ps = conn.prepareStatement(sql);
         int i = 0;
         ps.setString(++i, e.getDescricao());
@@ -32,7 +32,7 @@ public class TipoBeneficioDespesaDAO implements BaseDAO<TipoBeneficioDespesa>{
     @Override
     public TipoBeneficioDespesa readById(Long id, Connection conn) throws Exception {
         TipoBeneficioDespesa e = null;
-        String sql = "SELECT * FROM tipoBeneficioDespesa WHERE id=?;";
+        String sql = "SELECT * FROM tipobeneficiodespesa WHERE id=?;";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setLong(1, id);
         ResultSet rs = ps.executeQuery();
@@ -50,7 +50,7 @@ public class TipoBeneficioDespesaDAO implements BaseDAO<TipoBeneficioDespesa>{
     @Override
     public List<TipoBeneficioDespesa> readByCriteria(Map<String, Object> criteria, Connection conn) throws Exception {
         List<TipoBeneficioDespesa> lista = new ArrayList<TipoBeneficioDespesa>();
-        String sql = "SELECT * FROM tipoBeneficioDespesa WHERE 1=1 ";
+        String sql = "SELECT * FROM tipobeneficiodespesa WHERE 1=1 ";
         
         String criterionDescricaoILike = (String) criteria.get(CRITERION_DESCRICAO_I_LIKE);
         if (criterionDescricaoILike != null && !criterionDescricaoILike.trim().isEmpty()) {
@@ -73,7 +73,7 @@ public class TipoBeneficioDespesaDAO implements BaseDAO<TipoBeneficioDespesa>{
 
     @Override
     public void update(TipoBeneficioDespesa e, Connection conn) throws Exception {
-        String sql = "UPDATE tipoBeneficioDespesa SET descricao=?, tipo=? WHERE id=?;";
+        String sql = "UPDATE tipobeneficiodespesa SET descricao=?, tipo=? WHERE id=?;";
         PreparedStatement ps = conn.prepareStatement(sql);
         int i = 0;
         ps.setString(++i, e.getDescricao());
@@ -86,7 +86,7 @@ public class TipoBeneficioDespesaDAO implements BaseDAO<TipoBeneficioDespesa>{
     @Override
     public void delete(Long id, Connection conn) throws Exception {
         Statement st = conn.createStatement();
-        st.execute("DELETE FROM tipoBeneficioDespesa WHERE id =" + id);
+        st.execute("DELETE FROM tipobeneficiodespesa WHERE id =" + id);
         st.close();
     }
     

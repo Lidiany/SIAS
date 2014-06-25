@@ -32,6 +32,36 @@ import sias.controller.action.unidadeAtendimento.UnidadeAtendimentoShowFormActio
 import sias.controller.action.unidadeAtendimento.UnidadeAtendimentoUpdateAction;
 import static org.mentawai.core.ApplicationManager.ERROR;
 import static org.mentawai.core.ApplicationManager.SUCCESS;
+import sias.controller.action.formaIngresso.FormaIngressoCreateAction;
+import sias.controller.action.formaIngresso.FormaIngressoDeleteAction;
+import sias.controller.action.formaIngresso.FormaIngressoReadAction;
+import sias.controller.action.formaIngresso.FormaIngressoShowFormAction;
+import sias.controller.action.formaIngresso.FormaIngressoUpdateAction;
+import sias.controller.action.tipoBeneficioDespesa.TipoBeneficioDespesaCreateAction;
+import sias.controller.action.tipoBeneficioDespesa.TipoBeneficioDespesaDeleteAction;
+import sias.controller.action.tipoBeneficioDespesa.TipoBeneficioDespesaReadAction;
+import sias.controller.action.tipoBeneficioDespesa.TipoBeneficioDespesaShowFormAction;
+import sias.controller.action.tipoBeneficioDespesa.TipoBeneficioDespesaUpdateAction;
+import sias.controller.action.tipoDeficiencia.TipoDeficienciaCreateAction;
+import sias.controller.action.tipoDeficiencia.TipoDeficienciaDeleteAction;
+import sias.controller.action.tipoDeficiencia.TipoDeficienciaReadAction;
+import sias.controller.action.tipoDeficiencia.TipoDeficienciaShowFormAction;
+import sias.controller.action.tipoDeficiencia.TipoDeficienciaUpdateAction;
+import sias.controller.action.tipoEscolaridade.TipoEscolaridadeCreateAction;
+import sias.controller.action.tipoEscolaridade.TipoEscolaridadeDeleteAction;
+import sias.controller.action.tipoEscolaridade.TipoEscolaridadeReadAction;
+import sias.controller.action.tipoEscolaridade.TipoEscolaridadeShowFormAction;
+import sias.controller.action.tipoEscolaridade.TipoEscolaridadeUpdateAction;
+import sias.controller.action.tipoOcupacao.TipoOcupacaoCreateAction;
+import sias.controller.action.tipoOcupacao.TipoOcupacaoDeleteAction;
+import sias.controller.action.tipoOcupacao.TipoOcupacaoReadAction;
+import sias.controller.action.tipoOcupacao.TipoOcupacaoShowFormAction;
+import sias.controller.action.tipoOcupacao.TipoOcupacaoUpdateAction;
+import sias.controller.action.tipoParentesco.TipoParentescoCreateAction;
+import sias.controller.action.tipoParentesco.TipoParentescoDeleteAction;
+import sias.controller.action.tipoParentesco.TipoParentescoReadAction;
+import sias.controller.action.tipoParentesco.TipoParentescoShowFormAction;
+import sias.controller.action.tipoParentesco.TipoParentescoUpdateAction;
 
 public class AppManager extends ApplicationManager {
 
@@ -44,7 +74,7 @@ public class AppManager extends ApplicationManager {
         ac = new ActionConfig("Teste", TesteAction.class);
         ac.addConsequence(SUCCESS, new Forward("jsp/teste.page"));
         this.add(ac);
-        
+
         //TipoEspecificidadeSocial
         ac = new ActionConfig("TipoEspecificidadeSocialRead", TipoEspecificidadeSocialReadAction.class);
         ac.addConsequence(SUCCESS, new Forward("jsp/tipoEspecificidadeSocial/list.page"));
@@ -52,7 +82,7 @@ public class AppManager extends ApplicationManager {
 
         ac = new ActionConfig("TipoEspecificidadeSocialShowForm", TipoEspecificidadeSocialShowFormAction.class);
         ac.addConsequence("CREATE", new Forward("jsp/tipoEspecificidadeSocial/createForm.page"));
-        ac.addConsequence("UPDATE", new Forward("jsp/TipoEspecificidadeSocial/updateForm.page"));
+        ac.addConsequence("UPDATE", new Forward("jsp/tipoEspecificidadeSocial/updateForm.page"));
         this.add(ac);
 
         ac = new ActionConfig("TipoEspecificidadeSocialCreate", TipoEspecificidadeSocialCreateAction.class);
@@ -92,7 +122,7 @@ public class AppManager extends ApplicationManager {
         ac = new ActionConfig("UfDelete", UfDeleteAction.class);
         ac.addConsequence(SUCCESS, new Forward("UfRead.mtw"));
         this.add(ac);
-        
+
         //Municipio
         ac = new ActionConfig("MunicipioRead", MunicipioReadAction.class);
         ac.addConsequence(SUCCESS, new Forward("jsp/municipio/list.page"));
@@ -105,16 +135,16 @@ public class AppManager extends ApplicationManager {
 
         ac = new ActionConfig("MunicipioCreate", MunicipioCreateAction.class);
         ac.addConsequence(SUCCESS, new Redirect("MunicipioRead.mtw"));
-        ac.addConsequence(ERROR, new Forward("MunicipioShowForm.mtw"));
-        this.add(ac);
-
-        ac = new ActionConfig("MunicipioDelete", MunicipioDeleteAction.class);
-        ac.addConsequence(SUCCESS, new Forward("MunicipioRead.mtw"));
+        ac.addConsequence(ERROR, new Forward("jsp/municipio/createForm.page"));
         this.add(ac);
 
         ac = new ActionConfig("MunicipioUpdate", MunicipioUpdateAction.class);
         ac.addConsequence(SUCCESS, new Redirect("MunicipioRead.mtw"));
-        ac.addConsequence(ERROR, new Forward("MunicipioShowForm.mtw"));
+        ac.addConsequence(ERROR, new Forward("jsp/municipio/updateForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("MunicipioDelete", MunicipioDeleteAction.class);
+        ac.addConsequence(SUCCESS, new Forward("MunicipioRead.mtw"));
         this.add(ac);
 
         //Colaborador
@@ -164,5 +194,149 @@ public class AppManager extends ApplicationManager {
         ac = new ActionConfig("UnidadeAtendimentoDelete", UnidadeAtendimentoDeleteAction.class);
         ac.addConsequence(SUCCESS, new Forward("UnidadeAtendimentoRead.mtw"));
         this.add(ac);
-    }        
+
+        //Forma Ingresso
+        ac = new ActionConfig("FormaIngressoRead", FormaIngressoReadAction.class);
+        ac.addConsequence(SUCCESS, new Forward("jsp/formaIngresso/list.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("FormaIngressoShowForm", FormaIngressoShowFormAction.class);
+        ac.addConsequence("CREATE", new Forward("jsp/formaIngresso/createForm.page"));
+        ac.addConsequence("UPDATE", new Forward("jsp/formaIngresso/updateForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("FormaIngressoCreate", FormaIngressoCreateAction.class);
+        ac.addConsequence(SUCCESS, new Redirect("FormaIngressoRead.mtw"));
+        ac.addConsequence(ERROR, new Forward("jsp/formaIngresso/createForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("FormaIngressoUpdate", FormaIngressoUpdateAction.class);
+        ac.addConsequence(SUCCESS, new Redirect("FormaIngressoRead.mtw"));
+        ac.addConsequence(ERROR, new Forward("jsp/formaIngresso/updateForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("FormaIngressoDelete", FormaIngressoDeleteAction.class);
+        ac.addConsequence(SUCCESS, new Forward("FormaIngressoRead.mtw"));
+        this.add(ac);
+
+        //Tipo Escolaridade
+        ac = new ActionConfig("TipoEscolaridadeRead", TipoEscolaridadeReadAction.class);
+        ac.addConsequence(SUCCESS, new Forward("jsp/tipoEscolaridade/list.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoEscolaridadeShowForm", TipoEscolaridadeShowFormAction.class);
+        ac.addConsequence("CREATE", new Forward("jsp/tipoEscolaridade/createForm.page"));
+        ac.addConsequence("UPDATE", new Forward("jsp/tipoEscolaridade/updateForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoEscolaridadeCreate", TipoEscolaridadeCreateAction.class);
+        ac.addConsequence(SUCCESS, new Redirect("TipoEscolaridadeRead.mtw"));
+        ac.addConsequence(ERROR, new Forward("jsp/tipoEscolaridade/createForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoEscolaridadeUpdate", TipoEscolaridadeUpdateAction.class);
+        ac.addConsequence(SUCCESS, new Redirect("TipoEscolaridadeRead.mtw"));
+        ac.addConsequence(ERROR, new Forward("jsp/tipoEscolaridade/updateForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoEscolaridadeDelete", TipoEscolaridadeDeleteAction.class);
+        ac.addConsequence(SUCCESS, new Forward("TipoEscolaridadeRead.mtw"));
+        this.add(ac);
+        
+        //Tipo Ocupacao
+        ac = new ActionConfig("TipoOcupacaoRead", TipoOcupacaoReadAction.class);
+        ac.addConsequence(SUCCESS, new Forward("jsp/tipoOcupacao/list.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoOcupacaoShowForm", TipoOcupacaoShowFormAction.class);
+        ac.addConsequence("CREATE", new Forward("jsp/tipoOcupacao/createForm.page"));
+        ac.addConsequence("UPDATE", new Forward("jsp/tipoOcupacao/updateForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoOcupacaoCreate", TipoOcupacaoCreateAction.class);
+        ac.addConsequence(SUCCESS, new Redirect("TipoOcupacaoRead.mtw"));
+        ac.addConsequence(ERROR, new Forward("jsp/tipoOcupacao/createForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoOcupacaoUpdate", TipoOcupacaoUpdateAction.class);
+        ac.addConsequence(SUCCESS, new Redirect("TipoOcupacaoRead.mtw"));
+        ac.addConsequence(ERROR, new Forward("jsp/tipoOcupacao/updateForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoOcupacaoDelete", TipoOcupacaoDeleteAction.class);
+        ac.addConsequence(SUCCESS, new Forward("TipoOcupacaoRead.mtw"));
+        this.add(ac);
+        
+        //Tipo Parentesco
+        ac = new ActionConfig("TipoParentescoRead", TipoParentescoReadAction.class);
+        ac.addConsequence(SUCCESS, new Forward("jsp/tipoParentesco/list.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoParentescoShowForm", TipoParentescoShowFormAction.class);
+        ac.addConsequence("CREATE", new Forward("jsp/tipoParentesco/createForm.page"));
+        ac.addConsequence("UPDATE", new Forward("jsp/tipoParentesco/updateForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoParentescoCreate", TipoParentescoCreateAction.class);
+        ac.addConsequence(SUCCESS, new Redirect("TipoParentescoRead.mtw"));
+        ac.addConsequence(ERROR, new Forward("jsp/tipoParentesco/createForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoParentescoUpdate", TipoParentescoUpdateAction.class);
+        ac.addConsequence(SUCCESS, new Redirect("TipoParentescoRead.mtw"));
+        ac.addConsequence(ERROR, new Forward("jsp/tipoParentesco/updateForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoParentescoDelete", TipoParentescoDeleteAction.class);
+        ac.addConsequence(SUCCESS, new Forward("TipoParentescoRead.mtw"));
+        this.add(ac);
+        
+        //Tipo Deficiencia
+        ac = new ActionConfig("TipoDeficienciaRead", TipoDeficienciaReadAction.class);
+        ac.addConsequence(SUCCESS, new Forward("jsp/tipoDeficiencia/list.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoDeficienciaShowForm", TipoDeficienciaShowFormAction.class);
+        ac.addConsequence("CREATE", new Forward("jsp/tipoDeficiencia/createForm.page"));
+        ac.addConsequence("UPDATE", new Forward("jsp/tipoDeficiencia/updateForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoDeficienciaCreate", TipoDeficienciaCreateAction.class);
+        ac.addConsequence(SUCCESS, new Redirect("TipoDeficienciaRead.mtw"));
+        ac.addConsequence(ERROR, new Forward("jsp/tipoDeficiencia/createForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoDeficienciaUpdate", TipoDeficienciaUpdateAction.class);
+        ac.addConsequence(SUCCESS, new Redirect("TipoDeficienciaRead.mtw"));
+        ac.addConsequence(ERROR, new Forward("jsp/tipoDeficiencia/updateForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoDeficienciaDelete", TipoDeficienciaDeleteAction.class);
+        ac.addConsequence(SUCCESS, new Forward("TipoDeficienciaRead.mtw"));
+        this.add(ac);
+        
+        //Tipo Beneficio Despesa
+        ac = new ActionConfig("TipoBeneficioDespesaRead", TipoBeneficioDespesaReadAction.class);
+        ac.addConsequence(SUCCESS, new Forward("jsp/tipoBeneficioDespesa/list.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoBeneficioDespesaShowForm", TipoBeneficioDespesaShowFormAction.class);
+        ac.addConsequence("CREATE", new Forward("jsp/tipoBeneficioDespesa/createForm.page"));
+        ac.addConsequence("UPDATE", new Forward("jsp/tipoBeneficioDespesa/updateForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoBeneficioDespesaCreate", TipoBeneficioDespesaCreateAction.class);
+        ac.addConsequence(SUCCESS, new Redirect("TipoBeneficioDespesaRead.mtw"));
+        ac.addConsequence(ERROR, new Forward("jsp/tipoBeneficioDespesa/createForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoBeneficioDespesaUpdate", TipoBeneficioDespesaUpdateAction.class);
+        ac.addConsequence(SUCCESS, new Redirect("TipoBeneficioDespesaRead.mtw"));
+        ac.addConsequence(ERROR, new Forward("jsp/tipoBeneficioDespesa/updateForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("TipoBeneficioDespesaDelete", TipoBeneficioDespesaDeleteAction.class);
+        ac.addConsequence(SUCCESS, new Forward("TipoBeneficioDespesaRead.mtw"));
+        this.add(ac);
+    }
 }

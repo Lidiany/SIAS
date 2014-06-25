@@ -6,7 +6,7 @@ public class TipoBeneficioDespesa extends BasePOJO {
 
     private String descricao;
     private String tipo;
-    private BeneficioDespesa BeneficioDespesa_;
+    private BeneficioDespesa BeneficioDespesa;
 
     public String getDescricao() {
         return descricao;
@@ -24,12 +24,12 @@ public class TipoBeneficioDespesa extends BasePOJO {
         this.tipo = tipo;
     }
 
-    public BeneficioDespesa getBeneficioDespesa_() {
-        return BeneficioDespesa_;
+    public BeneficioDespesa getBeneficioDespesa() {
+        return BeneficioDespesa;
     }
 
-    public void setBeneficioDespesa_(BeneficioDespesa BeneficioDespesa_) {
-        this.BeneficioDespesa_ = BeneficioDespesa_;
+    public void setBeneficioDespesa(BeneficioDespesa BeneficioDespesa) {
+        this.BeneficioDespesa = BeneficioDespesa;
     }
 
 }

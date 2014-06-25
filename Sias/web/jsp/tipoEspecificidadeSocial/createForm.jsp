@@ -12,6 +12,7 @@
     <div class="control-group">
         <div class="controls">
             <button type="submit" class="btn btn-success"><i class="icon-ok icon-white"></i> Confirmar</button>
+            <button type="submit" class="btn btn-danger"><i class="icon-remove icon-white"></i> Cancelar</button>
         </div>
     </div>
 </mtw:form>

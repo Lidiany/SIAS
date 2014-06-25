@@ -92,7 +92,7 @@ public class MunicipioService implements BaseMunicipioService{
         if (properties != null) {
             String nome = (String) properties.get("nome");
             if (nome == null || nome.isEmpty()) {
-                errors.put("nome", "");
+                errors.put("nome", "Campo obrigatório!");
             }
         }
         return errors;

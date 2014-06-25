@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import sias.model.base.BaseDAO;
-import static sias.model.dao.TipoOcupacaoDAO.CRITERION_DESCRICAO_I_LIKE;
 import sias.model.pojo.TipoEscolaridade;
 
 public class TipoEscolaridadeDAO implements BaseDAO<TipoEscolaridade>{
@@ -17,12 +16,12 @@ public class TipoEscolaridadeDAO implements BaseDAO<TipoEscolaridade>{
     
     @Override
     public void create(TipoEscolaridade e, Connection conn) throws Exception {
-        String sql = "INSERT INTO tipoEscolaridade(codigo, descricao, ativo) VALUES (?, ?, ?) RETURNING id;";
+        String sql = "INSERT INTO tipoescolaridade(codigo, descricao, ativo) VALUES (?, ?, ?) RETURNING id;";
         PreparedStatement ps = conn.prepareStatement(sql);
         int i = 0;
         ps.setString(++i, e.getCodigo());
         ps.setString(++i, e.getDescricao());
-        ps.setBoolean(++i, e.getAtivo());
+        ps.setString(++i, e.getAtivo());
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             e.setId(rs.getLong("id"));
@@ -34,7 +33,7 @@ public class TipoEscolaridadeDAO implements BaseDAO<TipoEscolaridade>{
     @Override
     public TipoEscolaridade readById(Long id, Connection conn) throws Exception {
         TipoEscolaridade e = null;
-        String sql = "SELECT * FROM tipoEscolaridade WHERE id=?;";
+        String sql = "SELECT * FROM tipoescolaridade WHERE id=?;";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setLong(1, id);
         ResultSet rs = ps.executeQuery();
@@ -43,7 +42,7 @@ public class TipoEscolaridadeDAO implements BaseDAO<TipoEscolaridade>{
             e.setId(rs.getLong("id"));
             e.setCodigo(rs.getString("codigo"));
             e.setDescricao(rs.getString("descricao"));
-            e.setAtivo(rs.getBoolean("ativo"));
+            e.setAtivo(rs.getString("ativo"));
         }
         rs.close();
         ps.close();
@@ -53,7 +52,7 @@ public class TipoEscolaridadeDAO implements BaseDAO<TipoEscolaridade>{
     @Override
     public List<TipoEscolaridade> readByCriteria(Map<String, Object> criteria, Connection conn) throws Exception {
         List<TipoEscolaridade> lista = new ArrayList<TipoEscolaridade>();
-        String sql = "SELECT * FROM tipoEscolaridade WHERE 1=1 ";
+        String sql = "SELECT * FROM tipoescolaridade WHERE 1=1";
         
         String criterionDescricaoILike = (String) criteria.get(CRITERION_DESCRICAO_I_LIKE);
         if (criterionDescricaoILike != null && !criterionDescricaoILike.trim().isEmpty()) {
@@ -61,13 +60,13 @@ public class TipoEscolaridadeDAO implements BaseDAO<TipoEscolaridade>{
         }
         
         Statement s = conn.createStatement();
-        ResultSet rs = s.executeQuery(sql);
+        ResultSet rs = s.executeQuery(sql);        
         while (rs.next()) {
             TipoEscolaridade e = new TipoEscolaridade();
             e.setId(rs.getLong("id"));
             e.setCodigo(rs.getString("codigo"));
             e.setDescricao(rs.getString("descricao"));
-            e.setAtivo(rs.getBoolean("ativo"));
+            e.setAtivo(rs.getString("ativo"));
             lista.add(e);
         }
         rs.close();
@@ -77,12 +76,12 @@ public class TipoEscolaridadeDAO implements BaseDAO<TipoEscolaridade>{
 
     @Override
     public void update(TipoEscolaridade e, Connection conn) throws Exception {
-        String sql = "UPDATE tipoEscolaridade SET codigo=?, descricao=?, ativo=? WHERE id=?;";
+        String sql = "UPDATE tipoescolaridade SET codigo=?, descricao=?, ativo=? WHERE id=?;";
         PreparedStatement ps = conn.prepareStatement(sql);
         int i = 0;
         ps.setString(++i, e.getCodigo());
         ps.setString(++i, e.getDescricao());
-        ps.setBoolean(++i, e.getAtivo());
+        ps.setString(++i, e.getAtivo());
         ps.setLong(++i, e.getId());
         ps.execute();
         ps.close();}
@@ -90,7 +89,7 @@ public class TipoEscolaridadeDAO implements BaseDAO<TipoEscolaridade>{
     @Override
     public void delete(Long id, Connection conn) throws Exception {
         Statement st = conn.createStatement();
-        st.execute("DELETE FROM tipoEscolaridade WHERE id =" + id);
+        st.execute("DELETE FROM tipoescolaridade WHERE id =" + id);
         st.close();
     }
     

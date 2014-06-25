@@ -17,7 +17,7 @@ public class MunicipioUpdateAction extends BaseAction{
         form.put("nome", input.getString("municipio.nome"));
         form.put("uf.id", input.getLong("municipio.uf.id"));
         //Validando
-        Map<String, String> error = ServiceLocator.getUfService().validateForUpdate(form);
+        Map<String, String> error = ServiceLocator.getMunicipioService().validateForUpdate(form);
         if (error == null || error.isEmpty()){
             //Monto o pojo
             Municipio municipio = new Municipio();

@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="../../WEB-INF/imports.jspf"%>
 <mtw:form klass="form-horizontal" action="UnidadeAtendimentoCreate.mtw" method="post">
-    <legend>Formulário de Cadastro de Unidade Atendimento</legend>
+    <legend>Novo Unidade Atendimento</legend>
     <div class="control-group">
         <label class="control-label" for="inputNome">Nome:</label>
         <div class="controls">
@@ -10,10 +10,10 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="inputNumero">Número:</label>
+        <label class="control-label" for="inputNumerounidade">Número Unidade:</label>
         <div class="controls">
-            <mtw:input type="text" id="inputNumero" name="numero"/>
-            <span class="label label-important">${error.numero}</span>
+            <mtw:input type="text" id="inputNumerounidade" name="numerounidade"/>
+            <span class="label label-important">${error.numerounidade}</span>
         </div>
     </div>
     <div class="control-group">
@@ -58,6 +58,22 @@
             <span class="label label-important">${error.bairro}</span>
         </div>
     </div>
+
+    <div class="control-group">
+        <label class="control-label" for="inputNome">Município:</label>
+        <div class="controls">
+            <mtw:select name="municipio.id" list="municipioOptions" emptyField="true" emptyFieldValue="Selecione..."/>
+            <span class="label label-important">${error.municipio.id}</span>
+        </div>
+    </div> 
+    <div class="control-group">
+        <label class="control-label" for="inputNome">UF:</label>
+        <div class="controls">
+            <mtw:select name="uf.id" list="ufOptions" emptyField="true" emptyFieldValue="Selecione..."/>
+            <span class="label label-important">${error.uf.id}</span>
+        </div>
+    </div> 
+
     <div class="control-group">
         <label class="control-label" for="inputCep">CEP:</label>
         <div class="controls">
@@ -74,4 +90,4 @@
             <button type="submit" class="btn btn-danger"><i class="icon-remove icon-white"></i> Cancelar</button>
         </div>
     </div>
-</mtw:form>
+    </mtw:form>

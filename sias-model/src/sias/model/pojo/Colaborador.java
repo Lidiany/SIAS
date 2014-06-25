@@ -1,8 +1,6 @@
 package sias.model.pojo;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.sql.Date;
 import sias.model.base.BasePOJO;
 
 public class Colaborador extends BasePOJO {
@@ -12,7 +10,7 @@ public class Colaborador extends BasePOJO {
     private String numeroRg;
     private String orgaoExpedidor;
     private Date dataEmissao;
-    private String uf;
+    private String ufEmissao;
     private String cargo;
     private String funcao;
     private String telefone;
@@ -23,7 +21,8 @@ public class Colaborador extends BasePOJO {
     private String cep;
     private UnidadeAtendimento unidadeAtendimento;
     private Municipio municipio;
-
+    private Uf uf;
+    
     public String getNome() {
         return nome;
     }
@@ -62,14 +61,6 @@ public class Colaborador extends BasePOJO {
 
     public void setDataEmissao(Date dataEmissao) {
         this.dataEmissao = dataEmissao;
-    }
-
-    public String getUf() {
-        return uf;
-    }
-
-    public void setUf(String uf) {
-        this.uf = uf;
     }
 
     public String getCargo() {
@@ -150,5 +141,21 @@ public class Colaborador extends BasePOJO {
 
     public void setMunicipio(Municipio municipio) {
         this.municipio = municipio;
+    }
+
+    public Uf getUf() {
+        return uf;
+    }
+
+    public void setUf(Uf uf) {
+        this.uf = uf;
+    }
+
+    public String getUfEmissao() {
+        return ufEmissao;
+    }
+
+    public void setUfEmissao(String ufEmissao) {
+        this.ufEmissao = ufEmissao;
     }
 }

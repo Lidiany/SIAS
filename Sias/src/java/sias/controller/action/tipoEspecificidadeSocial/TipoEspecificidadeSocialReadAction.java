@@ -18,8 +18,8 @@ public class TipoEspecificidadeSocialReadAction extends BaseAction{
         if (descricao != null && !descricao.isEmpty()){
             criteria.put(TipoEspecificidadeSocialDAO.CRITERION_DESCRICAO_I_LIKE, descricao);
         }
-        List<TipoEspecificidadeSocial> tipoespecificidadesocial = ServiceLocator.getTipoEspecificidadeSocialService().readByCriteria(criteria);
-        output.setValue("lista", tipoespecificidadesocial);
+        List<TipoEspecificidadeSocial> tipoespecificidadesociais = ServiceLocator.getTipoEspecificidadeSocialService().readByCriteria(criteria);
+        output.setValue("lista", tipoespecificidadesociais);
         return consequence;
     }
     

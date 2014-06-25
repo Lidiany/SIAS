@@ -48,11 +48,17 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros<b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="ColaboradorCreate.mtw">Colaborador</a></li>
+                    <li><a href="ColaboradorRead.mtw">Colaborador</a></li>
+                    <li><a href="FormaIngressoRead.mtw">Forma Ingresso</a></li>
                     <li><a href="MunicipioRead.mtw">Município</a></li>
+                    <li><a href="TipoBeneficioDespesaRead.mtw">Tipo Benefício/Despesa</a></li>
+                    <li><a href="TipoDeficienciaRead.mtw">Tipo Deficiência</a></li>
+                    <li><a href="TipoEscolaridadeRead.mtw">Tipo Escolaridade</a></li>
                     <li><a href="TipoEspecificidadeSocialRead.mtw">Tipo Especificidade Social</a></li>
+                    <li><a href="TipoOcupacaoRead.mtw">Tipo Ocupação</a></li>
+                    <li><a href="TipoParentescoRead.mtw">Tipo Parentesco</a></li>
                     <li><a href="UfRead.mtw">UF</a></li>
-                    <li><a href="UnidadeAtendimentoCreate.mtw">Unidade de Atendimento</a></li>
+                    <li><a href="UnidadeAtendimentoRead.mtw">Unidade de Atendimento</a></li>
                   </ul>
                 </li>
                 <li><a href="#">Relatorios</a></li>

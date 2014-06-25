@@ -50,7 +50,7 @@ public class UfDAO implements BaseDAO<Uf> {
     @Override
     public List<Uf> readByCriteria(Map<String, Object> criteria, Connection conn) throws Exception {
         List<Uf> lista = new ArrayList<Uf>();
-        String sql = "SELECT * FROM uf WHERE 1=1 ";
+        String sql = "SELECT * FROM uf WHERE 1=1";
         
         String criterionNomeILike = (String) criteria.get(CRITERION_NOME_I_LIKE);
         if (criterionNomeILike != null && !criterionNomeILike.trim().isEmpty()) {

@@ -23,17 +23,17 @@ public class MunicipioShowFormAction extends BaseAction{
         this.preload();
         return consequence;
     }
-    
-    private void preload() throws Exception{
+
+    private void preload() throws Exception {
         Map<String, Object> criteria = new HashMap<String, Object>();
-        
+
         List<Uf> ufs = ServiceLocator.getUfService().readByCriteria(criteria);
-        
+
         Map<Long, String> ufOptions = new LinkedHashMap<Long, String>();
         for (Uf uf : ufs) {
             ufOptions.put(uf.getId(), uf.getNome());
         }
-        
+
         output.setValue("ufOptions", ufOptions);
     }
     

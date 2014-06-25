@@ -3,7 +3,7 @@
 
 <div class="input-append">
     <mtw:form action="TipoEspecificidadeSocialRead.mtw" method="post">
-        <mtw:input name="nome" type="text"/>
+        <mtw:input name="descricao" type="text"/>
         <button class="btn" type="submit"><i class="icon-search"></i> Pesquisar</button>
         <a href="TipoEspecificidadeSocialShowForm.mtw" class="btn"><i class="icon-plus"></i> Novo</a>
     </mtw:form>

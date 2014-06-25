@@ -16,12 +16,12 @@ public class TipoDeficienciaDAO implements BaseDAO<TipoDeficiencia>{
     
     @Override
     public void create(TipoDeficiencia e, Connection conn) throws Exception {
-        String sql = "INSERT INTO tipoDeficiencia(codigo, descricao, ativo) VALUES (?, ?, ?) RETURNING id;";
+        String sql = "INSERT INTO tipodeficiencia(codigo, descricao, ativo) VALUES (?, ?, ?) RETURNING id;";
         PreparedStatement ps = conn.prepareStatement(sql);
         int i = 0;
         ps.setString(++i, e.getCodigo());
         ps.setString(++i, e.getDescricao());
-        ps.setBoolean(++i, e.getAtivo());
+        ps.setString(++i, e.getAtivo());
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             e.setId(rs.getLong("id"));
@@ -33,7 +33,7 @@ public class TipoDeficienciaDAO implements BaseDAO<TipoDeficiencia>{
     @Override
     public TipoDeficiencia readById(Long id, Connection conn) throws Exception {
         TipoDeficiencia e = null;
-        String sql = "SELECT * FROM tipoDeficiencia WHERE id=?;";
+        String sql = "SELECT * FROM tipodeficiencia WHERE id=?;";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setLong(1, id);
         ResultSet rs = ps.executeQuery();
@@ -42,7 +42,7 @@ public class TipoDeficienciaDAO implements BaseDAO<TipoDeficiencia>{
             e.setId(rs.getLong("id"));
             e.setCodigo(rs.getString("codigo"));
             e.setDescricao(rs.getString("descricao"));
-            e.setAtivo(rs.getBoolean("ativo"));
+            e.setAtivo(rs.getString("ativo"));
         }
         rs.close();
         ps.close();
@@ -52,7 +52,7 @@ public class TipoDeficienciaDAO implements BaseDAO<TipoDeficiencia>{
     @Override
     public List<TipoDeficiencia> readByCriteria(Map<String, Object> criteria, Connection conn) throws Exception {
         List<TipoDeficiencia> lista = new ArrayList<TipoDeficiencia>();
-        String sql = "SELECT * FROM tipoDeficiencia WHERE 1=1 ";
+        String sql = "SELECT * FROM tipodeficiencia WHERE 1=1";
         
         String criterionDescricaoILike = (String) criteria.get(CRITERION_DESCRICAO_I_LIKE);
         if (criterionDescricaoILike != null && !criterionDescricaoILike.trim().isEmpty()) {
@@ -66,7 +66,7 @@ public class TipoDeficienciaDAO implements BaseDAO<TipoDeficiencia>{
             e.setId(rs.getLong("id"));
             e.setCodigo(rs.getString("codigo"));
             e.setDescricao(rs.getString("descricao"));
-            e.setAtivo(rs.getBoolean("ativo"));
+            e.setAtivo(rs.getString("ativo"));
             lista.add(e);
         }
         rs.close();
@@ -76,12 +76,12 @@ public class TipoDeficienciaDAO implements BaseDAO<TipoDeficiencia>{
 
     @Override
     public void update(TipoDeficiencia e, Connection conn) throws Exception {
-        String sql = "UPDATE tipoDeficiencia SET codigo=?, descricao=?, ativo=? WHERE id=?;";
+        String sql = "UPDATE tipodeficiencia SET codigo=?, descricao=?, ativo=? WHERE id=?;";
         PreparedStatement ps = conn.prepareStatement(sql);
         int i = 0;
         ps.setString(++i, e.getCodigo());
         ps.setString(++i, e.getDescricao());
-        ps.setBoolean(++i, e.getAtivo());
+        ps.setString(++i, e.getAtivo());
         ps.setLong(++i, e.getId());
         ps.execute();
         ps.close();
@@ -90,7 +90,7 @@ public class TipoDeficienciaDAO implements BaseDAO<TipoDeficiencia>{
     @Override
     public void delete(Long id, Connection conn) throws Exception {
         Statement st = conn.createStatement();
-        st.execute("DELETE FROM tipoDeficiencia WHERE id =" + id);
+        st.execute("DELETE FROM tipodeficiencia WHERE id =" + id);
         st.close();
     }
     

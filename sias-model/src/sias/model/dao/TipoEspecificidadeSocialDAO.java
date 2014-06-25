@@ -48,7 +48,7 @@ public class TipoEspecificidadeSocialDAO implements BaseDAO<TipoEspecificidadeSo
     @Override
     public List<TipoEspecificidadeSocial> readByCriteria(Map<String, Object> criteria, Connection conn) throws Exception {
         List<TipoEspecificidadeSocial> lista = new ArrayList<TipoEspecificidadeSocial>();
-        String sql = "SELECT * FROM tipoespecificidadesocial WHERE 1=1 ";
+        String sql = "SELECT * FROM tipoespecificidadesocial WHERE 1=1";
         
         String criterionDescricaoILike = (String) criteria.get(CRITERION_DESCRICAO_I_LIKE);
         if (criterionDescricaoILike != null && !criterionDescricaoILike.trim().isEmpty()){
