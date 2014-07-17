@@ -20,7 +20,7 @@ public class MunicipioDAO implements BaseDAO<Municipio> {
     @Override
     public void create(Municipio e, Connection conn) throws Exception {
         String sql = "INSERT INTO municipio (nome, uf_fk) VALUES (?, ?) RETURNING id;";
-        PreparedStatement ps = conn.prepareCall(sql);
+        PreparedStatement ps = conn.prepareStatement(sql);
         int i = 0;
         ps.setString(++i, e.getNome());
         if (e.getUf() != null) {

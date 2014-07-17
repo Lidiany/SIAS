@@ -1,5 +1,6 @@
 package sias.model.dao;
 
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -82,6 +83,12 @@ public class UnidadeAtendimentoDAO implements BaseDAO<UnidadeAtendimento> {
             uf.setNome(rs.getString("uf_nome"));
             uf.setSigla(rs.getString("uf_sigla"));
             e.setUf(uf);
+            
+            
+/*        PrintWriter out = new PrintWriter("C:\\Temp\\teste.txt");
+        out.println(ps.toString());
+        out.close();*/
+        
         }
         rs.close();
         ps.close();
@@ -143,7 +150,7 @@ public class UnidadeAtendimentoDAO implements BaseDAO<UnidadeAtendimento> {
     
     @Override
     public void update(UnidadeAtendimento e, Connection conn) throws Exception {
-        String sql = "UPDATE unidadeatendimento nome=?, numerounidade=?, responsavel=?, telefone=?, logradouro=?, numero=?, complementoendereco=?, bairro=?, cep=?, municipio_fk=?, uf_fk=? WHERE id=?;";
+        String sql = "UPDATE unidadeatendimento SET nome=?, numeroUnidade=?, responsavel=?, telefone=?, logradouro=?, numero=?, complementoEndereco=?, bairro=?, cep=?, municipio_fk=?, uf_fk=? WHERE unidadeatendimento.id=?;";
         PreparedStatement ps = conn.prepareStatement(sql);
         int i = 0;
         ps.setString(++i, e.getNome());

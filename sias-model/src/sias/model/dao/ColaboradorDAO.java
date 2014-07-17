@@ -1,5 +1,6 @@
 package sias.model.dao;
 
+import java.sql.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,13 +15,13 @@ import sias.model.pojo.Municipio;
 import sias.model.pojo.Uf;
 import sias.model.pojo.UnidadeAtendimento;
 
-public class ColaboradorDAO implements BaseDAO<Colaborador>{
+public class ColaboradorDAO implements BaseDAO<Colaborador> {
 
     public static final String CRITERION_NOME_I_LIKE = "1";
     public static final String CRITERION_MUNICIPIO_ID_EQ = "2";
-    public static final String CRITERION_UNIDADEATENDIMENTO_ID_EQ = "3";
-    public static final String CRITERION_UF_ID_EQ = "4";
-    
+    public static final String CRITERION_UF_ID_EQ = "3";
+    public static final String CRITERION_UNIDADEATENDIMENTO_ID_EQ = "4";
+
     @Override
     public void create(Colaborador e, Connection conn) throws Exception {
         String sql = "INSERT INTO colaborador(nome, cpf, numerorg, orgaoexpedidor, dataemissao, ufemissao, cargo, funcao, telefone, logradouro, numero, complementoendereco, bairro, cep, municipio_fk, uf_fk, unidadeatendimento_fk) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
@@ -40,7 +41,7 @@ public class ColaboradorDAO implements BaseDAO<Colaborador>{
         ps.setString(++i, e.getComplementoEndereco());
         ps.setString(++i, e.getBairro());
         ps.setString(++i, e.getCep());
-        
+
         if (e.getMunicipio() != null) {
             ps.setLong(++i, e.getMunicipio().getId());
         } else {
@@ -67,7 +68,7 @@ public class ColaboradorDAO implements BaseDAO<Colaborador>{
     @Override
     public Colaborador readById(Long id, Connection conn) throws Exception {
         Colaborador e = null;
-        String sql = "SELECT colaborador.*, municipio.id as municipio_id, municipio.nome as municipio_nome, uf.id as uf_id, uf.nome as uf_nome, unidadeatendimento.id as unidadeatendimento_id, unidadeatendimento.nome as unidadeatendimento_id FROM colaborador LEFT JOIN municipio ON colaborador.municipio_fk = municipio.id LEFT JOIN uf ON colaborador.uf_fk = uf.id LEFT JOIN unidadeatendimento ON colaborador.unidadeatendimento_fk = unidadeatendimento.id WHERE colaborador.id=?";
+        String sql = "SELECT colaborador.*, municipio.id as municipio_id, municipio.nome as municipio_nome, uf.id as uf_id, uf.nome as uf_nome, uf.sigla as uf_sigla, unidadeatendimento.id as unidadeatendimento_id, unidadeatendimento.nome as unidadeatendimento_nome FROM colaborador LEFT JOIN municipio ON colaborador.municipio_fk = municipio.id LEFT JOIN uf ON colaborador.uf_fk = uf.id LEFT JOIN unidadeatendimento ON colaborador.unidadeatendimento_fk = unidadeatendimento.id WHERE colaborador.id=?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setLong(1, id);
         ResultSet rs = ps.executeQuery();
@@ -88,30 +89,35 @@ public class ColaboradorDAO implements BaseDAO<Colaborador>{
             e.setComplementoEndereco(rs.getString("complementoendereco"));
             e.setBairro(rs.getString("bairro"));
             e.setCep(rs.getString("cep"));
-            
+
             UnidadeAtendimento unidadeAtendimento = new UnidadeAtendimento();
             unidadeAtendimento.setId(rs.getLong("unidadeatendimento_id"));
             unidadeAtendimento.setNome(rs.getString("unidadeatendimento_nome"));
-            unidadeAtendimento.setNumeroUnidade(rs.getString("unidadeatendimento_numerounidade"));
-            unidadeAtendimento.setResponsavel(rs.getString("unidadeatendimento_responsavel"));
-            unidadeAtendimento.setTelefone(rs.getString("unidadeatendimento_telefone"));
-            unidadeAtendimento.setLogradouro(rs.getString("unidadeatendimento_logradouro"));
-            unidadeAtendimento.setNumero(rs.getString("unidadeatendimento_numero"));
-            unidadeAtendimento.setComplementoEndereco(rs.getString("unidadeatendimento_complementoendereco"));
-            unidadeAtendimento.setBairro(rs.getString("unidadeatendimento_bairro"));
-            unidadeAtendimento.setCep(rs.getString("unidadeatendimento_cep"));
+            /*  unidadeAtendimento.setNumeroUnidade(rs.getString("unidadeatendimento_numerounidade"));
+             unidadeAtendimento.setResponsavel(rs.getString("unidadeatendimento_responsavel"));
+             unidadeAtendimento.setTelefone(rs.getString("unidadeatendimento_telefone"));
+             unidadeAtendimento.setLogradouro(rs.getString("unidadeatendimento_logradouro"));
+             unidadeAtendimento.setNumero(rs.getString("unidadeatendimento_numero"));
+             unidadeAtendimento.setComplementoEndereco(rs.getString("unidadeatendimento_complementoendereco"));
+             unidadeAtendimento.setBairro(rs.getString("unidadeatendimento_bairro"));
+             unidadeAtendimento.setCep(rs.getString("unidadeatendimento_cep"));*/
             e.setUnidadeAtendimento(unidadeAtendimento);
-            
+
             Municipio municipio = new Municipio();
             municipio.setId(rs.getLong("municipio_id"));
             municipio.setNome(rs.getString("municipio_nome"));
             e.setMunicipio(municipio);
-            
+
             Uf uf = new Uf();
             uf.setId(rs.getLong("uf_id"));
             uf.setNome(rs.getString("uf_nome"));
             uf.setSigla(rs.getString("uf_sigla"));
             e.setUf(uf);
+
+            /*PrintWriter out = new PrintWriter("C:\\Temp\\teste.txt");
+             out.println(ps.toString());
+             out.close();
+             */
         }
         rs.close();
         ps.close();
@@ -122,18 +128,13 @@ public class ColaboradorDAO implements BaseDAO<Colaborador>{
     public List<Colaborador> readByCriteria(Map<String, Object> criteria, Connection conn) throws Exception {
         List<Colaborador> lista = new ArrayList<Colaborador>();
         String sql = "SELECT colaborador.*, municipio.id as municipio_id, municipio.nome as municipio_nome, uf.id as uf_id, uf.nome as uf_nome, uf.sigla as uf_sigla, unidadeatendimento.id as unidadeatendimento_id, unidadeatendimento.nome as unidadeatendimento_nome FROM colaborador LEFT JOIN municipio ON colaborador.municipio_fk = municipio.id LEFT JOIN uf ON colaborador.uf_fk = uf.id LEFT JOIN unidadeatendimento ON colaborador.unidadeatendimento_fk = unidadeatendimento.id WHERE 1=1";
-        
+
         String criterionNomeILike = (String) criteria.get(CRITERION_NOME_I_LIKE);
         if (criterionNomeILike != null && !criterionNomeILike.trim().isEmpty()) {
             sql += " AND colaborador.nome ILIKE '%" + criterionNomeILike + "%'";
         }
-        
-        Long criterionUnidadeAtendimentoIdEq = (Long) criteria.get(CRITERION_UNIDADEATENDIMENTO_ID_EQ);
-        if (criterionUnidadeAtendimentoIdEq != null && criterionUnidadeAtendimentoIdEq > 0) {
-            sql += " AND unidadeatendimento_fk ='" + criterionUnidadeAtendimentoIdEq + "'";
-        }
-        
-        Long criterionMunicipioIdEq = (Long) criteria.get(CRITERION_UNIDADEATENDIMENTO_ID_EQ);
+
+        Long criterionMunicipioIdEq = (Long) criteria.get(CRITERION_MUNICIPIO_ID_EQ);
         if (criterionMunicipioIdEq != null && criterionMunicipioIdEq > 0) {
             sql += " AND municipio_fk ='" + criterionMunicipioIdEq + "'";
         }
@@ -142,7 +143,12 @@ public class ColaboradorDAO implements BaseDAO<Colaborador>{
         if (criterionUfIdEq != null && criterionUfIdEq > 0) {
             sql += " AND uf_fk ='" + criterionUfIdEq + "'";
         }
-        
+
+        Long criterionUnidadeAtendimentoIdEq = (Long) criteria.get(CRITERION_UNIDADEATENDIMENTO_ID_EQ);
+        if (criterionUnidadeAtendimentoIdEq != null && criterionUnidadeAtendimentoIdEq > 0) {
+            sql += " AND unidadeatendimento_fk ='" + criterionUnidadeAtendimentoIdEq + "'";
+        }
+
         Statement s = conn.createStatement();
         ResultSet rs = s.executeQuery(sql);
         while (rs.next()) {
@@ -162,31 +168,31 @@ public class ColaboradorDAO implements BaseDAO<Colaborador>{
             colaborador.setComplementoEndereco(rs.getString("complementoendereco"));
             colaborador.setBairro(rs.getString("bairro"));
             colaborador.setCep(rs.getString("cep"));
-            
+
             UnidadeAtendimento unidadeAtendimento = new UnidadeAtendimento();
             unidadeAtendimento.setId(rs.getLong("unidadeatendimento_id"));
             unidadeAtendimento.setNome(rs.getString("unidadeatendimento_nome"));
-        /*    unidadeAtendimento.setNumeroUnidade(rs.getString("unidadeatendimento_numerounidade"));
-            unidadeAtendimento.setResponsavel(rs.getString("unidadeatendimento_responsavel"));
-            unidadeAtendimento.setTelefone(rs.getString("unidadeatendimento_telefone"));
-            unidadeAtendimento.setLogradouro(rs.getString("unidadeatendimento_logradouro"));
-            unidadeAtendimento.setNumero(rs.getString("unidadeatendimento_numero"));
-            unidadeAtendimento.setComplementoEndereco(rs.getString("unidadeatendimento_complementoendereco"));
-            unidadeAtendimento.setBairro(rs.getString("unidadeatendimento_bairro"));
-            unidadeAtendimento.setCep(rs.getString("unidadeatendimento_cep"));*/
+            /*    unidadeAtendimento.setNumeroUnidade(rs.getString("unidadeatendimento_numerounidade"));
+             unidadeAtendimento.setResponsavel(rs.getString("unidadeatendimento_responsavel"));
+             unidadeAtendimento.setTelefone(rs.getString("unidadeatendimento_telefone"));
+             unidadeAtendimento.setLogradouro(rs.getString("unidadeatendimento_logradouro"));
+             unidadeAtendimento.setNumero(rs.getString("unidadeatendimento_numero"));
+             unidadeAtendimento.setComplementoEndereco(rs.getString("unidadeatendimento_complementoendereco"));
+             unidadeAtendimento.setBairro(rs.getString("unidadeatendimento_bairro"));
+             unidadeAtendimento.setCep(rs.getString("unidadeatendimento_cep"));*/
             colaborador.setUnidadeAtendimento(unidadeAtendimento);
-            
+
             Municipio municipio = new Municipio();
             municipio.setId(rs.getLong("municipio_id"));
             municipio.setNome(rs.getString("municipio_nome"));
             colaborador.setMunicipio(municipio);
-            
+
             Uf uf = new Uf();
             uf.setId(rs.getLong("uf_id"));
             uf.setNome(rs.getString("uf_nome"));
             uf.setSigla(rs.getString("uf_sigla"));
             colaborador.setUf(uf);
-            
+
             lista.add(colaborador);
         }
         rs.close();
@@ -196,7 +202,7 @@ public class ColaboradorDAO implements BaseDAO<Colaborador>{
 
     @Override
     public void update(Colaborador e, Connection conn) throws Exception {
-        String sql = "UPDATE SET colaborador nome=?, cpf=?, numerorg=?, orgaoexpedidor=?, dataemissao=?, ufemissao=?, cargo=?, funcao=?, telefone=?, logradouro=?, numero=?, complementoendereco=?, bairro=?, cep=?, unidadeatendimento_fk=?, municipio_fk=?, uf_fk=? WHERE id=?;";
+        String sql = "UPDATE SET colaborador nome=?, cpf=?, numeroRg=?, orgaoExpedidor=?, dataEmissao=?, ufEmissao=?, cargo=?, funcao=?, telefone=?, logradouro=?, numero=?, complementoEndereco=?, bairro=?, cep=?, municipio_fk=?, uf_fk=?, unidadeatendimento_fk=? WHERE colaborador.id=?;";
         PreparedStatement ps = conn.prepareStatement(sql);
         int i = 0;
         ps.setString(++i, e.getNome());
@@ -204,11 +210,11 @@ public class ColaboradorDAO implements BaseDAO<Colaborador>{
         ps.setString(++i, e.getNumeroRg());
         ps.setString(++i, e.getOrgaoExpedidor());
         ps.setDate(++i, e.getDataEmissao());
-/*        if (e.getDataEmissao() != null) {
-            ps.setDate(++i, (Date) e.getDataEmissao());
-        } else {
-            ps.setNull(++i, Types.DATE);
-        }*/
+        /*        if (e.getDataEmissao() != null) {
+         ps.setDate(++i, (Date) e.getDataEmissao());
+         } else {
+         ps.setNull(++i, Types.DATE);
+         }*/
         ps.setString(++i, e.getUfEmissao());
         ps.setString(++i, e.getCargo());
         ps.setString(++i, e.getFuncao());
@@ -218,11 +224,6 @@ public class ColaboradorDAO implements BaseDAO<Colaborador>{
         ps.setString(++i, e.getComplementoEndereco());
         ps.setString(++i, e.getBairro());
         ps.setString(++i, e.getCep());
-        if (e.getUnidadeAtendimento() != null) {
-            ps.setLong(++i, e.getUnidadeAtendimento().getId());
-        } else {
-            ps.setNull(++i, Types.BIGINT);
-        }
         if (e.getMunicipio() != null) {
             ps.setLong(++i, e.getMunicipio().getId());
         } else {
@@ -230,6 +231,11 @@ public class ColaboradorDAO implements BaseDAO<Colaborador>{
         }
         if (e.getUf() != null) {
             ps.setLong(++i, e.getUf().getId());
+        } else {
+            ps.setNull(++i, Types.BIGINT);
+        } 
+        if (e.getUnidadeAtendimento() != null) {
+            ps.setLong(++i, e.getUnidadeAtendimento().getId());
         } else {
             ps.setNull(++i, Types.BIGINT);
         }
@@ -244,5 +250,5 @@ public class ColaboradorDAO implements BaseDAO<Colaborador>{
         st.execute("DELETE FROM colaborador WHERE id =" + id);
         st.close();
     }
-    
+
 }

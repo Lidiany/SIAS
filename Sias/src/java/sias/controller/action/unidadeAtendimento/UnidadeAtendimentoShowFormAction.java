@@ -19,7 +19,7 @@ public class UnidadeAtendimentoShowFormAction extends BaseAction{
         Long id = input.getLong("id");
         if (id != null && id > 0) {
             unidadeAtendimento = ServiceLocator.getUnidadeAtendimentoService().readById(id);
-            output.setValue("id", unidadeAtendimento.getId());
+           /* output.setValue("id", unidadeAtendimento.getId());
             output.setValue("nome", unidadeAtendimento.getNome());
             output.setValue("numerounidade", unidadeAtendimento.getNumeroUnidade());
             output.setValue("responsavel", unidadeAtendimento.getResponsavel());
@@ -30,7 +30,8 @@ public class UnidadeAtendimentoShowFormAction extends BaseAction{
             output.setValue("bairro", unidadeAtendimento.getBairro());
             output.setValue("municipio.id", unidadeAtendimento.getMunicipio().getId());
             output.setValue("uf.id", unidadeAtendimento.getUf().getId());
-            output.setValue("cep", unidadeAtendimento.getCep());
+            output.setValue("cep", unidadeAtendimento.getCep());*/
+            output.setValue("unidadeatendimento", unidadeAtendimento);
             consequence = "UPDATE";
         }
         this.preload(unidadeAtendimento);

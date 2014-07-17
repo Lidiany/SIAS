@@ -7,8 +7,7 @@ public class TipoDeficiencia extends BasePOJO {
     private String codigo;
     private String descricao;
     private String ativo;
-    private DeficienciaPessoa DeficienciaPessoa;
-
+    
     public String getCodigo() {
         return codigo;
     }
@@ -32,13 +31,4 @@ public class TipoDeficiencia extends BasePOJO {
     public void setAtivo(String ativo) {
         this.ativo = ativo;
     }
-
-    public DeficienciaPessoa getDeficienciaPessoa() {
-        return DeficienciaPessoa;
-    }
-
-    public void setDeficienciaPessoa(DeficienciaPessoa DeficienciaPessoa) {
-        this.DeficienciaPessoa = DeficienciaPessoa;
-    }
-
 }

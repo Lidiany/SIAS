@@ -8,18 +8,19 @@
         <a href="UnidadeAtendimentoShowForm.mtw" class="btn"><i class="icon-plus"></i> Novo</a>
     </mtw:form>
 </div>
-<!--
+
 <div class="tabela">
     <display:table name="lista" id="item" pagesize="3" requestURI="" defaultsort="1" sort="list">
         <display:column property="id" sortable="true" title="Código" style="width:10%;"/>
         <display:column property="nome" sortable="true" title="Nome" style="width:60%;"/>
-        <display:column property="numerounidade" sortable="true" title="Número Unidade" style="width:40%;"/>
+        <display:column property="numeroUnidade" sortable="true" title="Número Unidade" style="width:40%;"/>
         <display:column property="responsavel" sortable="true" title="Responsavel" style="width:10%;"/>
         <display:column value="<i class=\"icon-edit\"></i>" href="UnidadeAtendimentoShowForm.mtw" title="Opções" paramId="id" paramProperty="id" style="width:5%;"/>
         <display:column value="<i class=\"icon-trash\"></i>" href="UnidadeAtendimentoDelete.mtw" class="deleteLink" paramId="id" paramProperty="id" style="width:5%;"/>
+        <display:column value="<i class=\"icon-list-alt\"></i>" href="" class="listLink" paramId="id" paramProperty="id" style="width:5%;"/>
     </display:table>
 </div>
--->
+
 <div class="modal hide" id="confirmDelete">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">×</button>

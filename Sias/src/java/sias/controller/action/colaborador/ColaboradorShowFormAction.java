@@ -20,7 +20,7 @@ public class ColaboradorShowFormAction extends BaseAction {
         Long id = input.getLong("id");
         if (id != null && id > 0) {
             colaborador = ServiceLocator.getColaboradorService().readById(id);
-            output.setValue("id", colaborador.getId());
+         /*   output.setValue("id", colaborador.getId());
             output.setValue("nome", colaborador.getNome());
             output.setValue("cpf", colaborador.getCpf());
             output.setValue("numerorg", colaborador.getNumeroRg());
@@ -37,7 +37,8 @@ public class ColaboradorShowFormAction extends BaseAction {
             output.setValue("municipio.id", colaborador.getMunicipio().getId());
             output.setValue("uf.id", colaborador.getUf().getId());
             output.setValue("cep", colaborador.getCep());
-            output.setValue("unidadeatendimento.id", colaborador.getUnidadeAtendimento());
+            output.setValue("unidadeatendimento.id", colaborador.getUnidadeAtendimento());*/
+            output.setValue("colaborador", colaborador);
             consequence = "UPDATE";
         }
         this.preload(colaborador);

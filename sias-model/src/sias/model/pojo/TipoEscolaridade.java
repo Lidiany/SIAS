@@ -1,7 +1,5 @@
 package sias.model.pojo;
 
-import java.util.ArrayList;
-import java.util.List;
 import sias.model.base.BasePOJO;
 
 public class TipoEscolaridade extends BasePOJO {
