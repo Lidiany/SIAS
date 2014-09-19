@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/LidianyJúnia/Documents/sias-model/src/sias/model/dao/UnidadeAtendimentoDAO.java</file>
-            <file>file:/C:/Users/LidianyJúnia/Documents/sias-model/src/sias/model/dao/ColaboradorDAO.java</file>
-            <file>file:/C:/Users/LidianyJúnia/Documents/sias-model/src/sias/model/dao/MunicipioDAO.java</file>
-            <file>file:/C:/Users/LidianyJúnia/Documents/sias-model/src/sias/model/base/BasePOJO.java</file>
-            <file>file:/C:/Users/LidianyJúnia/Documents/sias-model/src/sias/model/pojo/Colaborador.java</file>
+            <file>file:/C:/Users/LidianyJúnia/Documents/NetBeansProjects/sias-model/src/sias/model/service/PessoaService.java</file>
+            <file>file:/C:/Users/LidianyJúnia/Documents/NetBeansProjects/sias-model/src/sias/model/service/ColaboradorService.java</file>
         </group>
     </open-files>
 </project-private>

@@ -11,16 +11,17 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="inputNome">UF:</label>
+        <label class="control-label" for="inputSigla">UF:</label>
         <div class="controls">
-            <mtw:select name="uf.id" list="ufOptions" emptyField="true" emptyFieldValue="Selecione..."/>
+            <mtw:select name="uf.id" list="ufOptions" emptyField="true" defEmptyFieldValue="0" emptyFieldValue="Selecione..."/>
             <span class="label label-important">${error.uf.id}</span>
         </div>
-    </div>
+    </div> 
+
     <div class="control-group">
         <div class="controls">
-            <button type="submit" class="btn btn-success"><i class="icon-ok icon-white"></i> Confirmar</button>
-            <button type="submit" class="btn btn-danger"><i class="icon-remove icon-white"></i> Cancelar</button>
+            <button type="submit" class="btn btn-success">Confirmar</button>
+            <button type="submit" class="btn btn-danger">Cancelar</button>
         </div>
     </div>
 </mtw:form>

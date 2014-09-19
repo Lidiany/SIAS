@@ -62,10 +62,20 @@ public class ColaboradorShowFormAction extends BaseAction {
 
         Map<Long, String> ufOptions = new LinkedHashMap<Long, String>();
         for (Uf uf : ufs) {
-            ufOptions.put(uf.getId(), uf.getNome());
+            ufOptions.put(uf.getId(), uf.getSigla());
         }
 
         output.setValue("ufOptions", ufOptions);
+
+        criteria.clear();
+        List<Uf> ufemissaos = ServiceLocator.getUfService().readByCriteria(criteria);
+
+        Map<Long, String> ufEmissaoOptions = new LinkedHashMap<Long, String>();
+        for (Uf ufemissao : ufemissaos) {
+            ufEmissaoOptions.put(ufemissao.getId(), ufemissao.getSigla());
+        }
+
+        output.setValue("ufEmissaoOptions", ufEmissaoOptions);
 
         criteria.clear();
         List<UnidadeAtendimento> unidadeAtendimentos = ServiceLocator.getUnidadeAtendimentoService().readByCriteria(criteria);

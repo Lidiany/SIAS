@@ -1,12 +1,12 @@
 package sias.model.pojo;
 
-import java.util.Date;
+import java.sql.Date;
 import sias.model.base.BasePOJO;
 
 public class Pessoa extends BasePOJO {
 
     private Date dataInclusao;
-    private String numeroOrdem;
+    private Integer numeroOrdem;
     private String nome;
     private String nomeMae;
     private String nomePai;
@@ -15,11 +15,11 @@ public class Pessoa extends BasePOJO {
     private String numeroRg;
     private String orgaoExpedidor;
     private Date dataEmissaoRg;
-    private String uf;
+    private Uf ufRg;
     private String numeroCtps;
     private String serie;
     private Date dataEmissaoCtps;
-    private String ufCtps;
+    private Uf ufCtps;
     private String numeroTituloEleitoral;
     private String zona;
     private String secao;
@@ -28,10 +28,14 @@ public class Pessoa extends BasePOJO {
     private String livro;
     private String folha;
     private Date dataEmissaoCn;
-    private String ufCn;
+    private Uf ufCn;
     private String tipoCertidao;
     private Date dataNascimento;
     private String nacionalidade;
+    private Uf ufNacionalidade;
+    private Municipio municipioNacionalidade;
+    private Integer idade;
+    private String classificacaoetaria;
     private String sexo;
     private String raca;
     private String estadoCivil;
@@ -53,20 +57,24 @@ public class Pessoa extends BasePOJO {
     private String pontoReferencia;
     private String localizacao;
     private String abrigo;
-    private String tipo;
+    private String tipoLogradouro;
     private Date dataDesligamento;
     private String motivoDesligamento;
     private String complementoPessoa;
     private FormaIngresso formaIngresso;
-    private DeficienciaPessoa deficienciaPessoa;
-    private BeneficioDespesa beneficioDespesa;
     private TipoEscolaridade tipoEscolaridade;
     private TipoOcupacao tipoOcupacao;
     private TipoParentesco tipoParentesco;
     private TipoEspecificidadeSocial tipoEspecificidadeSocial;
     private Municipio municipio;
-    private Colaborador colaborador;
+    private Uf uf;
+    private TipoBeneficioDespesa tipoBeneficioDespesa;
+    private TipoDeficiencia tipoDeficiencia;
     private Pessoa pessoa;
+    private Date dataAtualizacaoCadastro;
+    private Date dataAtualizacaoEndereco;
+    private Date dataAtualizacaoHabitacional;
+    private String complementoHabitacional;
 
     public Date getDataInclusao() {
         return dataInclusao;
@@ -76,11 +84,11 @@ public class Pessoa extends BasePOJO {
         this.dataInclusao = dataInclusao;
     }
 
-    public String getNumeroOrdem() {
+    public Integer getNumeroOrdem() {
         return numeroOrdem;
     }
 
-    public void setNumeroOrdem(String numeroOrdem) {
+    public void setNumeroOrdem(Integer numeroOrdem) {
         this.numeroOrdem = numeroOrdem;
     }
 
@@ -148,14 +156,6 @@ public class Pessoa extends BasePOJO {
         this.dataEmissaoRg = dataEmissaoRg;
     }
 
-    public String getUf() {
-        return uf;
-    }
-
-    public void setUf(String uf) {
-        this.uf = uf;
-    }
-
     public String getNumeroCtps() {
         return numeroCtps;
     }
@@ -178,14 +178,6 @@ public class Pessoa extends BasePOJO {
 
     public void setDataEmissaoCtps(Date dataEmissaoCtps) {
         this.dataEmissaoCtps = dataEmissaoCtps;
-    }
-
-    public String getUfCtps() {
-        return ufCtps;
-    }
-
-    public void setUfCtps(String ufCtps) {
-        this.ufCtps = ufCtps;
     }
 
     public String getNumeroTituloEleitoral() {
@@ -250,14 +242,6 @@ public class Pessoa extends BasePOJO {
 
     public void setDataEmissaoCn(Date dataEmissaoCn) {
         this.dataEmissaoCn = dataEmissaoCn;
-    }
-
-    public String getUfCn() {
-        return ufCn;
-    }
-
-    public void setUfCn(String ufCn) {
-        this.ufCn = ufCn;
     }
 
     public String getTipoCertidao() {
@@ -452,14 +436,6 @@ public class Pessoa extends BasePOJO {
         this.abrigo = abrigo;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public Date getDataDesligamento() {
         return dataDesligamento;
     }
@@ -490,22 +466,6 @@ public class Pessoa extends BasePOJO {
 
     public void setFormaIngresso(FormaIngresso formaIngresso) {
         this.formaIngresso = formaIngresso;
-    }
-
-    public DeficienciaPessoa getDeficienciaPessoa() {
-        return deficienciaPessoa;
-    }
-
-    public void setDeficienciaPessoa(DeficienciaPessoa deficienciaPessoa) {
-        this.deficienciaPessoa = deficienciaPessoa;
-    }
-
-    public BeneficioDespesa getBeneficioDespesa() {
-        return beneficioDespesa;
-    }
-
-    public void setBeneficioDespesa(BeneficioDespesa beneficioDespesa) {
-        this.beneficioDespesa = beneficioDespesa;
     }
 
     public TipoEscolaridade getTipoEscolaridade() {
@@ -548,12 +508,28 @@ public class Pessoa extends BasePOJO {
         this.municipio = municipio;
     }
 
-    public Colaborador getColaborador() {
-        return colaborador;
+    public Uf getUf() {
+        return uf;
     }
 
-    public void setColaborador(Colaborador colaborador) {
-        this.colaborador = colaborador;
+    public void setUf(Uf uf) {
+        this.uf = uf;
+    }
+
+    public TipoBeneficioDespesa getTipoBeneficioDespesa() {
+        return tipoBeneficioDespesa;
+    }
+
+    public void setTipoBeneficioDespesa(TipoBeneficioDespesa tipoBeneficioDespesa) {
+        this.tipoBeneficioDespesa = tipoBeneficioDespesa;
+    }
+
+    public TipoDeficiencia getTipoDeficiencia() {
+        return tipoDeficiencia;
+    }
+
+    public void setTipoDeficiencia(TipoDeficiencia tipoDeficiencia) {
+        this.tipoDeficiencia = tipoDeficiencia;
     }
 
     public Pessoa getPessoa() {
@@ -562,5 +538,109 @@ public class Pessoa extends BasePOJO {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public Date getDataAtualizacaoCadastro() {
+        return dataAtualizacaoCadastro;
+    }
+
+    public void setDataAtualizacaoCadastro(Date dataAtualizacaoCadastro) {
+        this.dataAtualizacaoCadastro = dataAtualizacaoCadastro;
+    }
+
+    public Date getDataAtualizacaoEndereco() {
+        return dataAtualizacaoEndereco;
+    }
+
+    public void setDataAtualizacaoEndereco(Date dataAtualizacaoEndereco) {
+        this.dataAtualizacaoEndereco = dataAtualizacaoEndereco;
+    }
+
+    public Date getDataAtualizacaoHabitacional() {
+        return dataAtualizacaoHabitacional;
+    }
+
+    public void setDataAtualizacaoHabitacional(Date dataAtualizacaoHabitacional) {
+        this.dataAtualizacaoHabitacional = dataAtualizacaoHabitacional;
+    }
+
+    public String getComplementoHabitacional() {
+        return complementoHabitacional;
+    }
+
+    public void setComplementoHabitacional(String complementoHabitacional) {
+        this.complementoHabitacional = complementoHabitacional;
+    }
+
+    public Uf getUfRg() {
+        return ufRg;
+    }
+
+    public void setUfRg(Uf ufRg) {
+        this.ufRg = ufRg;
+    }
+
+    public Uf getUfCtps() {
+        return ufCtps;
+    }
+
+    public void setUfCtps(Uf ufCtps) {
+        this.ufCtps = ufCtps;
+    }
+
+    public Uf getUfCn() {
+        return ufCn;
+    }
+
+    public void setUfCn(Uf ufCn) {
+        this.ufCn = ufCn;
+    }
+
+    public Uf getUfNacionalidade() {
+        return ufNacionalidade;
+    }
+
+    public void setUfNacionalidade(Uf ufNacionalidade) {
+        this.ufNacionalidade = ufNacionalidade;
+    }
+
+    public Municipio getMunicipioNacionalidade() {
+        return municipioNacionalidade;
+    }
+
+    public void setMunicipioNacionalidade(Municipio municipioNacionalidade) {
+        this.municipioNacionalidade = municipioNacionalidade;
+    }
+
+    public Integer getIdade() {
+        return idade;
+    }
+
+    public void setIdade(Integer idade) {
+        this.idade = idade;
+    }
+
+    public String getClassificacaoetaria() {
+        return classificacaoetaria;
+    }
+
+    public void setClassificacaoetaria(String classificacaoetaria) {
+        this.classificacaoetaria = classificacaoetaria;
+    }
+
+    public String getTipoLogradouro() {
+        return tipoLogradouro;
+    }
+
+    public void setTipoLogradouro(String tipoLogradouro) {
+        this.tipoLogradouro = tipoLogradouro;
+    }
+
+    public String getSexoAsTexto() {
+        String texto = "Feminino";
+        if (sexo.equals("0")) {
+            texto = "Masculino";
+        }
+        return texto;
     }
 }

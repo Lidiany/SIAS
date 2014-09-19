@@ -92,8 +92,48 @@ public class UnidadeAtendimentoService implements BaseUnidadeAtendimentoService{
         if (properties != null) {
             String nome = (String) properties.get("nome");
             if (nome == null || nome.isEmpty()) {
-                errors.put("nome", "Campo obrigatório!");
+                errors.put("nome", "*");
             }
+/*            String numeroUnidade = (String) properties.get("numerounidade");
+            if (numeroUnidade == null || numeroUnidade.isEmpty()) {
+                errors.put("numerounidade", "*");
+            }
+            String resposavel = (String) properties.get("responsavel");
+            if (resposavel == null || resposavel.isEmpty()) {
+                errors.put("responsavel", "*");
+            }
+            String telefone = (String) properties.get("telefone");
+            if (telefone == null || telefone.isEmpty()) {
+                errors.put("telefone", "*");
+            }
+            String logradouro = (String) properties.get("logradouro");
+            if (logradouro == null || logradouro.isEmpty()) {
+                errors.put("logradouro", "*");
+            }
+            String numero = (String) properties.get("numero");
+            if (numero == null || numero.isEmpty()) {
+                errors.put("numero", "*");
+            }
+            String complementoEndereco = (String) properties.get("complementoendereco");
+            if (complementoEndereco == null || complementoEndereco.isEmpty()) {
+                errors.put("complementoendereco", "*");
+            }
+            String bairro = (String) properties.get("bairro");
+            if (bairro == null || bairro.isEmpty()) {
+                errors.put("bairro", "*");
+            }
+            String cep = (String) properties.get("cep");
+            if (cep == null || cep.isEmpty()) {
+                errors.put("cep", "*");
+            }            
+            String municipio = (String) properties.get("municipio");
+            if (municipio == null || municipio.isEmpty()) {
+                errors.put("municipio", "*");
+            }
+            String uf = (String) properties.get("uf");
+            if (uf == null || uf.isEmpty()) {
+                errors.put("uf", "*");
+            }*/
         }
         return errors;
     }
