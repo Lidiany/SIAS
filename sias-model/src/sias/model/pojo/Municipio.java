@@ -7,14 +7,6 @@ public class Municipio extends BasePOJO {
     private String nome;
     private Uf uf;
 
-    public Uf getUf() {
-        return uf;
-    }
-
-    public void setUf(Uf uf) {
-        this.uf = uf;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -23,4 +15,15 @@ public class Municipio extends BasePOJO {
         this.nome = nome;
     }
 
+    public Uf getUf() {
+        return uf;
+    }
+
+    public void setUf(Uf uf) {
+        this.uf = uf;
+    }
+
+    public void setUf() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

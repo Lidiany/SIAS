@@ -90,17 +90,9 @@ public class TipoParentescoService implements BaseTipoParentescoService{
     public Map<String, String> validateForCreate(Map<String, Object> properties) throws Exception {
         Map<String, String> errors = new HashMap<String, String>();
         if (properties != null) {
-            String codigo = (String) properties.get("codigo");
-            if (codigo == null || codigo.isEmpty()) {
-                errors.put("codigo", "*");
-            }
             String descricao = (String) properties.get("descricao");
             if (descricao == null || descricao.isEmpty()) {
-                errors.put("descricao", "*");
-            }
-            String ativo = (String) properties.get("ativo");
-            if (ativo == null || ativo.isEmpty()) {
-                errors.put("ativo", "*");
+                errors.put("descricao", "Campo obrigatório!");
             }
         }
         return errors;

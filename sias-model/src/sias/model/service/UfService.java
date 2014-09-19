@@ -92,11 +92,11 @@ public class UfService implements BaseUfService{
         if (properties != null) {
             String nome = (String) properties.get("nome");
             if (nome == null || nome.isEmpty()) {
-                errors.put("nome", "*");
+                errors.put("nome", "Campo Obrigatório.");
             }
             String sigla = (String) properties.get("sigla");
             if (sigla == null || sigla.isEmpty()) {
-                errors.put("sigla", "*");
+                errors.put("sigla", "Campo Obrigatório.");
             }
         }
         return errors;

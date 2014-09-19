@@ -10,7 +10,7 @@
             <span class="label label-important">${error.nome}</span>
         </div>
     </div>
-    <div class="control-group">
+   <div class="control-group">
         <label class="control-label" for="inputCpf">CPF:</label>
         <div class="controls">
             <mtw:input type="text" id="inputCpf" name="colaborador.cpf"/>
@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="inputNumeroRg">Número RG:</label>
+        <label class="control-label" for="inputNumerorg">Número RG:</label>
         <div class="controls">
             <mtw:input type="text" id="inputNumerorg" name="colaborador.numeroRg"/>
             <span class="label label-important">${error.numerorg}</span>
@@ -26,7 +26,7 @@
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="inputOrgaoExpedidor">Órgão Expedidor:</label>
+        <label class="control-label" for="inputOrgaoexpedidor">Órgão Expedidor:</label>
         <div class="controls">
             <mtw:input type="text" id="inputOrgaoexpedidor" name="colaborador.orgaoExpedidor"/>
             <span class="label label-important">${error.orgaoexpedidor}</span>
@@ -40,13 +40,12 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="inputUfEmissao">UF Emissão:</label>
+        <label class="control-label" for="inputUfemissao">UF Emissão:</label>
         <div class="controls">
-            <mtw:select name="colaborador.ufEmissao.id" list="ufEmissaoOptions" emptyField="true" defEmptyFieldValue="0" emptyFieldValue="Selecione..."/>
-            <span class="label label-important">${error.ufemissao.id}</span>
+            <mtw:input type="text" id="inputUfemissao" name="colaborador.ufEmissao"/>
+            <span class="label label-important">${error.ufemissao}</span>
         </div>
-    </div> 
-
+    </div>
     <div class="control-group">
         <label class="control-label" for="inputCargo">Cargo:</label>
         <div class="controls">
@@ -98,19 +97,20 @@
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="inputMunicipio">Município:</label>
+        <label class="control-label" for="inputNome">Município:</label>
         <div class="controls">
-            <mtw:select name="colaborador.municipio.id" list="municipioOptions" emptyField="true" defEmptyFieldValue="0" emptyFieldValue="Selecione..."/>
+            <mtw:select name="colaborador.municipio.id" list="municipioOptions" emptyField="true" emptyFieldValue="Selecione..."/>
             <span class="label label-important">${error.municipio.id}</span>
         </div>
     </div> 
     <div class="control-group">
-        <label class="control-label" for="inputUf">UF:</label>
+        <label class="control-label" for="inputNome">UF:</label>
         <div class="controls">
-            <mtw:select name="colaborador.uf.id" list="ufOptions" emptyField="true" defEmptyFieldValue="0" emptyFieldValue="Selecione..."/>
+            <mtw:select name="colaborador.uf.id" list="ufOptions" emptyField="true" emptyFieldValue="Selecione..."/>
             <span class="label label-important">${error.uf.id}</span>
         </div>
     </div> 
+
     <div class="control-group">
         <label class="control-label" for="inputCep">CEP:</label>
         <div class="controls">
@@ -119,9 +119,9 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="inputUnidadeatendimento">Unidade Atendimento:</label>
+        <label class="control-label" for="inputNome">Unidade Atendimento:</label>
         <div class="controls">
-            <mtw:select name="colaborador.unidadeAtendimento.id" list="unidadeAtendimentoOptions" emptyField="true" defEmptyFieldValue="0" emptyFieldValue="Selecione..."/>
+            <mtw:select name="colaborador.unidadeatendimento.id" list="unidadeAtendimentoOptions" emptyField="true" emptyFieldValue="Selecione..."/>
             <span class="label label-important">${error.unidadeatendimento.id}</span>
         </div>
     </div> 
@@ -130,8 +130,8 @@
 
     <div class="control-group">
         <div class="controls">
-            <button type="submit" class="btn btn-success">Confirmar</button>
-            <button type="submit" class="btn btn-danger">Cancelar</button>
+            <button type="submit" class="btn btn-success"><i class="icon-ok icon-white"></i> Confirmar</button>
+            <button type="submit" class="btn btn-danger"><i class="icon-remove icon-white"></i> Cancelar</button>
         </div>
     </div>
 </mtw:form>

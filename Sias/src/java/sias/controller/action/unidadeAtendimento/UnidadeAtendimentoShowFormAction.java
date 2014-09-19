@@ -55,7 +55,7 @@ public class UnidadeAtendimentoShowFormAction extends BaseAction{
         
         Map<Long, String> ufOptions = new LinkedHashMap<Long, String>();
         for(Uf uf: ufs) {
-            ufOptions.put(uf.getId(), uf.getSigla());
+            ufOptions.put(uf.getId(), uf.getNome());
         }
         output.setValue("ufOptions", ufOptions);
     }

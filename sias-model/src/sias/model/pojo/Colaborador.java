@@ -10,7 +10,7 @@ public class Colaborador extends BasePOJO {
     private String numeroRg;
     private String orgaoExpedidor;
     private Date dataEmissao;
-    private Uf ufEmissao;
+    private String ufEmissao;
     private String cargo;
     private String funcao;
     private String telefone;
@@ -151,12 +151,11 @@ public class Colaborador extends BasePOJO {
         this.uf = uf;
     }
 
-    public Uf getUfEmissao() {
+    public String getUfEmissao() {
         return ufEmissao;
     }
 
-    public void setUfEmissao(Uf ufEmissao) {
+    public void setUfEmissao(String ufEmissao) {
         this.ufEmissao = ufEmissao;
     }
-
 }

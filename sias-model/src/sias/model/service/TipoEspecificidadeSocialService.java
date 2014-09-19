@@ -92,7 +92,7 @@ public class TipoEspecificidadeSocialService implements BaseTipoEspecificidadeSo
         if (properties != null) {
             String descricao = (String) properties.get("descricao");
             if (descricao == null || descricao.isEmpty()) {
-                errors.put("descricao", "*");
+                errors.put("descricao", "");
             }
         }
         return errors;
