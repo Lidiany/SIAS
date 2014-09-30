@@ -2,8 +2,9 @@ package sias.model.pojo;
 
 import java.util.ArrayList;
 import java.util.List;
+import sias.model.base.BasePOJO;
 
-public class DeficienciaPessoa {
+public class DeficienciaPessoa extends BasePOJO{
 
     private String descricao;
     private List<TipoDeficiencia> tipoDeficiencias = new ArrayList<TipoDeficiencia>();

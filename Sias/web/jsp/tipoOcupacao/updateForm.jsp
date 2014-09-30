@@ -19,15 +19,22 @@
     </div>
     <div class="control-group">
         <label class="control-label" for="inputAtivo">Ativo:</label>
-        <div class="controls">
-            <mtw:input type="text" id="inputAtivo" name="tipoOcupacao.ativo"/>
-            <span class="label label-important">${error.ativo}</span>
+        <div class="controls radio">
+            <label>
+                <input type="radio" name="tipoOcupacao.ativo" value="1" <c:if test="${tipoOcupacao.ativo eq '1'}">checked</c:if> /> Sim
+                </label>
+            </div>
+            <div class="controls radio">
+                <label>
+                    <input type="radio" name="tipoOcupacao.ativo" value="0" <c:if test="${tipoOcupacao.ativo eq '0'}">checked</c:if> /> Não
+                <span class="label label-important">${error.ativo}</span>
+            </label>
         </div>
     </div>
     <div class="control-group">
         <div class="controls">
-            <button type="submit" class="btn btn-success"><i class="icon-ok icon-white"></i> Confirmar</button>
-            <button type="submit" class="btn btn-danger"><i class="icon-remove icon-white"></i> Cancelar</button>
+            <button type="submit" class="btn btn-success">Confirmar</button>
+            <a type="submit" class="btn btn-danger" href="TipoOcupacaoRead.mtw">Cancelar</a>
         </div>
     </div>
 </mtw:form>

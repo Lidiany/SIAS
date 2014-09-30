@@ -3,16 +3,22 @@ package sias.model.pojo;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import sias.model.base.BasePOJO;
 
-public class BeneficioDespesa {
+public class BeneficioDespesa extends BasePOJO{
 
     private Date dataInicio;
     private Date dataTermino;
     private Float valor;
     private Date dataAtualizacao;
-    private List<TipoBeneficioDespesa> tipoBeneficioDespesas = new ArrayList<TipoBeneficioDespesa>();
-    private List<Pessoa> pessoas = new ArrayList<Pessoa>();
+    private List<TipoBeneficioDespesa> tipoBeneficioDespesas; 
+    private List<Pessoa> pessoas;
 
+    public BeneficioDespesa() {
+        this.tipoBeneficioDespesas = new ArrayList<TipoBeneficioDespesa>();
+        this.pessoas = new ArrayList<Pessoa>();
+    }
+    
     public Date getDataInicio() {
         return dataInicio;
     }

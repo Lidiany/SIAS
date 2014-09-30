@@ -9,7 +9,7 @@ import sias.model.base.service.BaseTipoBeneficioDespesaService;
 import sias.model.dao.TipoBeneficioDespesaDAO;
 import sias.model.pojo.TipoBeneficioDespesa;
 
-public class TipoBeneficioDespesaService implements BaseTipoBeneficioDespesaService{
+public class TipoBeneficioDespesaService implements BaseTipoBeneficioDespesaService {
 
     @Override
     public void create(TipoBeneficioDespesa pojo) throws Exception {
@@ -92,7 +92,11 @@ public class TipoBeneficioDespesaService implements BaseTipoBeneficioDespesaServ
         if (properties != null) {
             String descricao = (String) properties.get("descricao");
             if (descricao == null || descricao.isEmpty()) {
-                errors.put("descricao", "Campo obrigatório!");
+                errors.put("descricao", "*");
+            }
+            String tipo = (String) properties.get("tipo");
+            if (tipo == null || tipo.isEmpty()) {
+                errors.put("tipo", "*");
             }
         }
         return errors;
@@ -102,5 +106,5 @@ public class TipoBeneficioDespesaService implements BaseTipoBeneficioDespesaServ
     public Map<String, String> validateForUpdate(Map<String, Object> properties) throws Exception {
         return this.validateForCreate(properties);
     }
-    
+
 }

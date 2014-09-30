@@ -1,18 +1,18 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="../../WEB-INF/imports.jspf"%>
 <mtw:form klass="form-horizontal" action="TipoEspecificidadeSocialCreate.mtw" method="post">
-    <legend>Novo Tipo Especificidade Social</legend>
+    <legend>Nova Especificidade Familiar</legend>
     <div class="control-group">
         <label class="control-label" for="inputDescricao">Descrição:</label>
         <div class="controls">
-            <mtw:input type="text" id="inputDescricao" name="descricao"/>
+            <mtw:input klass="span5" type="text" id="inputDescricao" name="descricao"/>
             <span class="label label-important">${error.descricao}</span>
         </div>
     </div>
     <div class="control-group">
         <div class="controls">
-            <button type="submit" class="btn btn-success"><i class="icon-ok icon-white"></i> Confirmar</button>
-            <button type="submit" class="btn btn-danger"><i class="icon-remove icon-white"></i> Cancelar</button>
+            <button type="submit" class="btn btn-success">Confirmar</button>
+            <a type="submit" class="btn btn-danger" href="TipoEspecificidadeSocialRead.mtw">Cancelar</a>
         </div>
     </div>
 </mtw:form>

@@ -18,28 +18,39 @@
     </div>
     <div class="control-group">
         <label class="control-label" for="inputAtivo">Ativo:</label>
-        <div class="controls">
-            <mtw:input type="text" id="inputAtivo" name="ativo"/>
-            <span class="label label-important">${error.ativo}</span>
+        <div class="controls radio">
+            <label>
+                <input checked="yes" type="radio" name="ativo" value="1"> Sim
+            </label>
+        </div>
+        <div class="controls radio">
+            <label>
+                <input type="radio" name="ativo" value="0"> Não
+                <span class="label label-important">${error.ativo}</span>
+            </label>
         </div>
     </div>
-<!--    <div class="control-group">
+    <div class="control-group">
+        <div class="controls">
+            <button type="submit" class="btn btn-success">Confirmar</button>
+            <a type="submit" class="btn btn-danger" href="FormaIngressoRead.mtw">Cancelar</a>
+        </div>
+    </div>
+</mtw:form>
+
+ <!--   <div class="control-group">
         <label class="control-label" for="inputAtivo">Ativo:</label>
-        <div class="controls radio">
-            <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"> Sim
-            </label>
+        <div class="controls">
+            <input type="radio" name="ativo" value="Sim"/>Sim  
+            <input type="radio" name="ativo" value="Nao"/>Não<br>
+            <span class="label label-important">${error.ativo}</span>
         </div>
-        <div class="controls radio">
-            <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Não
-            </label>
-        </div>
-    </div>-->
+    </div>        
     <div class="control-group">
         <div class="controls">
             <button type="submit" class="btn btn-success"><i class="icon-ok icon-white"></i> Confirmar</button>
             <button type="submit" class="btn btn-danger"><i class="icon-remove icon-white"></i> Cancelar</button>
         </div>
-    </div>
-</mtw:form>
+    </div>-->
+ 
+ 

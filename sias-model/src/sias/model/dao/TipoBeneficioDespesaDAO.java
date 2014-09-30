@@ -55,6 +55,7 @@ public class TipoBeneficioDespesaDAO implements BaseDAO<TipoBeneficioDespesa>{
         String criterionDescricaoILike = (String) criteria.get(CRITERION_DESCRICAO_I_LIKE);
         if (criterionDescricaoILike != null && !criterionDescricaoILike.trim().isEmpty()) {
             sql += " AND descricao ILIKE '%" + criterionDescricaoILike + "%'";
+            sql += " ORDER BY tipo, descricao";
         }
         
         Statement s = conn.createStatement();

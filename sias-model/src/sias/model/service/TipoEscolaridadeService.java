@@ -9,7 +9,7 @@ import sias.model.base.service.BaseTipoEscolaridadeService;
 import sias.model.dao.TipoEscolaridadeDAO;
 import sias.model.pojo.TipoEscolaridade;
 
-public class TipoEscolaridadeService implements BaseTipoEscolaridadeService{
+public class TipoEscolaridadeService implements BaseTipoEscolaridadeService {
 
     @Override
     public void create(TipoEscolaridade pojo) throws Exception {
@@ -90,9 +90,17 @@ public class TipoEscolaridadeService implements BaseTipoEscolaridadeService{
     public Map<String, String> validateForCreate(Map<String, Object> properties) throws Exception {
         Map<String, String> errors = new HashMap<String, String>();
         if (properties != null) {
+            String codigo = (String) properties.get("codigo");
+            if (codigo == null || codigo.isEmpty()) {
+                errors.put("codigo", "*");
+            }
             String descricao = (String) properties.get("descricao");
             if (descricao == null || descricao.isEmpty()) {
-                errors.put("descricao", "Campo obrigatório!");
+                errors.put("descricao", "*");
+            }
+            String ativo = (String) properties.get("ativo");
+            if (ativo == null || ativo.isEmpty()) {
+                errors.put("ativo", "*");
             }
         }
         return errors;
@@ -102,5 +110,5 @@ public class TipoEscolaridadeService implements BaseTipoEscolaridadeService{
     public Map<String, String> validateForUpdate(Map<String, Object> properties) throws Exception {
         return this.validateForCreate(properties);
     }
-    
+
 }

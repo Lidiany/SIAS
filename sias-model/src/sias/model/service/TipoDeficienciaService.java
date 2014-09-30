@@ -9,7 +9,7 @@ import sias.model.base.service.BaseTipoDeficienciaService;
 import sias.model.dao.TipoDeficienciaDAO;
 import sias.model.pojo.TipoDeficiencia;
 
-public class TipoDeficienciaService implements BaseTipoDeficienciaService{
+public class TipoDeficienciaService implements BaseTipoDeficienciaService {
 
     @Override
     public void create(TipoDeficiencia pojo) throws Exception {
@@ -90,9 +90,17 @@ public class TipoDeficienciaService implements BaseTipoDeficienciaService{
     public Map<String, String> validateForCreate(Map<String, Object> properties) throws Exception {
         Map<String, String> errors = new HashMap<String, String>();
         if (properties != null) {
+            String codigo = (String) properties.get("codigo");
+            if (codigo == null || codigo.isEmpty()) {
+                errors.put("codigo", "*");
+            }
             String descricao = (String) properties.get("descricao");
             if (descricao == null || descricao.isEmpty()) {
-                errors.put("descricao", "Campo obrigatório!");
+                errors.put("descricao", "*");
+            }
+            String ativo = (String) properties.get("ativo");
+            if (ativo == null || ativo.isEmpty()) {
+                errors.put("ativo", "*");
             }
         }
         return errors;
@@ -102,5 +110,5 @@ public class TipoDeficienciaService implements BaseTipoDeficienciaService{
     public Map<String, String> validateForUpdate(Map<String, Object> properties) throws Exception {
         return this.validateForCreate(properties);
     }
-    
+
 }

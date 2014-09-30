@@ -31,4 +31,13 @@ public class TipoParentesco extends BasePOJO {
     public void setAtivo(String ativo) {
         this.ativo = ativo;
     }
+
+    public String getAtivoAsTexto() {
+        String texto = "Sim";
+        if (ativo.equals("0")) {
+            texto = "Não";
+        }
+        return texto;
+    }
+
 }

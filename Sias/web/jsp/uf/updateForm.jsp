@@ -13,14 +13,14 @@
     <div class="control-group">
         <label class="control-label" for="inputSigla">Sigla:</label>
         <div class="controls">
-            <mtw:input type="text" id="inputSigla" name="uf.sigla"/>
+            <mtw:input type="text" id="inputSigla" name="uf.sigla" style="text-transform:uppercase"/>
             <span class="label label-important">${error.sigla}</span>
         </div>
     </div>
     <div class="control-group">
         <div class="controls">
-            <button type="submit" class="btn btn-success"><i class="icon-ok icon-white"></i> Confirmar</button>
-            <button type="submit" class="btn btn-danger"><i class="icon-remove icon-white"></i> Cancelar</button>
+            <button type="submit" class="btn btn-success">Confirmar</button>
+            <a type="submit" class="btn btn-danger" href="UfRead.mtw">Cancelar</a>
         </div>
     </div>
 </mtw:form>

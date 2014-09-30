@@ -10,17 +10,17 @@
             <span class="label label-important">${error.descricao}</span>
         </div>
     </div>
-    <div class="control-group">
+        <div class="control-group">
         <label class="control-label" for="inputTipo">Tipo:</label>
         <div class="controls">
-            <mtw:input type="text" id="inputTipo" name="tipoBeneficioDespesa.tipo"/>
+            <mtw:select klass="span2" name="tipoBeneficioDespesa.tipo" list="tipoOptions" emptyField="true" defEmptyFieldValue="0" emptyFieldValue="Selecione..."/>
             <span class="label label-important">${error.tipo}</span>
         </div>
     </div>
     <div class="control-group">
         <div class="controls">
-            <button type="submit" class="btn btn-success"><i class="icon-ok icon-white"></i> Confirmar</button>
-            <button type="submit" class="btn btn-danger"><i class="icon-remove icon-white"></i> Cancelar</button>
+            <button type="submit" class="btn btn-success">Confirmar</button>
+            <a type="submit" class="btn btn-danger" href="TipoBeneficioDespesa.mtw">Cancelar</a>
         </div>
     </div>
 </mtw:form>

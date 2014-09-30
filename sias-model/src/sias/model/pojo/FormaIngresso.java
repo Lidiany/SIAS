@@ -7,7 +7,7 @@ public class FormaIngresso extends BasePOJO {
     private String codigo;
     private String descricao;
     private String ativo;
-    
+
     public String getCodigo() {
         return codigo;
     }
@@ -32,5 +32,12 @@ public class FormaIngresso extends BasePOJO {
         this.ativo = ativo;
     }
 
+    public String getAtivoAsTexto() {
+        String texto = "Sim";
+        if (ativo.equals("0")) {
+            texto = "Não";
+        }
+        return texto;
+    }
 
 }

@@ -25,7 +25,7 @@ public class ColaboradorCreateAction extends BaseAction {
         form.put("numerorg", input.getString("numerorg"));
         form.put("orgaoexpedidor", input.getString("orgaoexpedidor"));
         form.put("dataemissao", input.getString("dataemissao"));
-        form.put("ufemissao", input.getString("ufemissao"));
+        form.put("ufemissao.id", input.getLong("ufemissao.id"));
         form.put("cargo", input.getString("cargo"));
         form.put("funcao", input.getString("funcao"));
         form.put("telefone", input.getString("telefone"));
@@ -48,7 +48,8 @@ public class ColaboradorCreateAction extends BaseAction {
             colaborador.setNumeroRg((String) form.get("numerorg"));
             colaborador.setOrgaoExpedidor((String) form.get("orgaoexpedidor"));
             colaborador.setDataEmissao(new Date(sdf.parse(input.getString("dataemissao")).getTime()));
-            colaborador.setUfEmissao((String) form.get("ufemissao"));
+            Uf ufEmissao = ServiceLocator.getUfService().readById((Long) form.get("ufemissao.id"));
+            colaborador.setUfEmissao(ufEmissao);
             colaborador.setCargo((String) form.get("cargo"));
             colaborador.setFuncao((String) form.get("funcao"));
             colaborador.setTelefone((String) form.get("telefone"));
