@@ -40,6 +40,7 @@ import sias.controller.action.formaIngresso.FormaIngressoShowFormAction;
 import sias.controller.action.formaIngresso.FormaIngressoUpdateAction;
 import sias.controller.action.pessoa.PessoaCreateAction;
 import sias.controller.action.pessoa.PessoaDeleteAction;
+import sias.controller.action.pessoa.PessoaDescricaoAction;
 import sias.controller.action.pessoa.PessoaReadAction;
 import sias.controller.action.pessoa.PessoaShowFormAction;
 import sias.controller.action.pessoa.PessoaUpdateAction;
@@ -368,9 +369,9 @@ public class AppManager extends ApplicationManager {
         ac.addConsequence("CREATE", new Forward("jsp/pessoa/membroFamilia.page"));
         this.add(ac);
 
-     /*   ac = new ActionConfig("PessoaMembroEscolaridade", PessoaShowFormAction.class);
-        this.add(ac);
-*/
+        /*   ac = new ActionConfig("PessoaMembroEscolaridade", PessoaShowFormAction.class);
+         this.add(ac);
+         */
         ac = new ActionConfig("PessoaCreate", PessoaCreateAction.class);
         ac.addConsequence(SUCCESS, new Redirect("PessoaRead.mtw"));
         ac.addConsequence(ERROR, new Forward("jsp/pessoa/createForm.page"));
@@ -388,5 +389,10 @@ public class AppManager extends ApplicationManager {
         ac = new ActionConfig("PessoaComposicaoFamilia", PessoaReadAction.class);
         ac.addConsequence(SUCCESS, new Forward("jsp/pessoa/composicaoFamilia.page"));
         this.add(ac);
+
+        ac = new ActionConfig("PessoaDescricaoFamilia", PessoaDescricaoAction.class);
+        ac.addConsequence(SUCCESS, new Forward("jsp/pessoa/descricaoFamilia.page"));
+        this.add(ac);
+
     }
 }

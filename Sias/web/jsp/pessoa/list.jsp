@@ -19,15 +19,15 @@
     </mtw:form>
 </div>
 
-<legend><strong>> 1. Pessoa(as) encontrada(as)</strong></legend>
+<legend><strong>> 1. Pessoa(s) encontrada(s)</strong></legend>
 <div class="tabela">
     <display:table name="lista" id="item" pagesize="15" requestURI="" defaultsort="1" sort="list">
-        <display:column class="pull-right" property="numeroOrdem" sortable="true" title="Número de Ordem"  style="width:20%;"/>
+        <display:column class="pull-right" property="numeroOrdem" sortable="true" title="Número de Ordem" style="width:20%;"/>
         <display:column property="nome" sortable="true" title="Nome" style="width:30%;"/>
         <display:column property="sexoAsTexto" sortable="true" title="Sexo" style="width:10%;"/>
-        <display:column class="pull-right" property="idade" sortable="true" title="Idade" style="width:10%;"/>
+        <display:column class="pull-right" property="pessoa.idade" sortable="true" title="Idade" style="width:10%;"/>
         <display:column property="tipoParentesco.descricao" sortable="true" title="Parentesco" style="width:20%;"/>
-        <display:column value="Ver" href="PessoaComposicaoFamilia.mtw" title="Opções" paramId="id" paramProperty="id" style="width:5%;"/>
+        <display:column value="Ver" href="PessoaDescricaoFamilia.mtw" title="Opções" paramId="id" paramProperty="id" style="width:5%;"/>
         <display:column value="Consultar" href="PessoaComposicaoFamilia.mtw" paramId="id" paramProperty="id" style="width:5%;"/>
 
     </display:table>

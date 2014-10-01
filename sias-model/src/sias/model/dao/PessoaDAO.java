@@ -159,6 +159,8 @@ public class PessoaDAO implements BaseDAO<Pessoa> {
         ps.setString(++i, e.getComplementoPessoa());
 
         ps.setString(++i, e.getComplementoHabitacional());
+        
+        
         if (e.getDataAtualizacaoCadastro() != null) {
             ps.setDate(++i, e.getDataAtualizacaoCadastro());
         } else {

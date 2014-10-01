@@ -142,8 +142,8 @@
             <mtw:inputDate klass="span2" dateFormat="dd/mm/yyyy" id="inputDataemissaorg" name="pessoa.dataEmissaoRg"/>
             <span class="label label-important">${error.dataemissaorg}</span>
             <td>UF</td>
-            <mtw:select klass="span2" name="ufrg" list="ufOptions" emptyField="true" defEmptyFieldValue="0" emptyFieldValue="Selecione..."/>
-            <span class="label label-important">${error.ufrg}</span>
+            <mtw:select klass="span2" name="pessoa.ufRg.id" list="ufOptions" emptyField="true" defEmptyFieldValue="0" emptyFieldValue="Selecione..."/>
+            <span class="label label-important">${error.ufrg.id}</span>
         </div>
     </div>
     <div class="control-group">
@@ -158,8 +158,8 @@
             <mtw:inputDate klass="span2" dateFormat="dd/mm/yyyy" id="inputDataemissaoctps" name="pessoa.dataEmissaoCtps"/>
             <span class="label label-important">${error.dataemissaoctps}</span>
             <td>UF</td>
-            <mtw:select klass="span2" name="ufctps" list="ufOptions" emptyField="true" defEmptyFieldValue="0" emptyFieldValue="Selecione..."/>
-            <span class="label label-important">${error.ufrg}</span>
+            <mtw:select klass="span2" name="pessoa.ufCtps.id" list="ufOptions" emptyField="true" defEmptyFieldValue="0" emptyFieldValue="Selecione..."/>
+            <span class="label label-important">${error.ufctps.id}</span>
         </div>
     </div>
     <div class="control-group">
@@ -200,15 +200,15 @@
             <mtw:inputDate klass="span2" dateFormat="dd/mm/yyyy" id="inputDataemissaocn" name="pessoa.dataEmissaoCn"/>
             <span class="label label-important">${error.dataemissaocn}</span>
             <td>UF:</td>
-            <mtw:select klass="span2" name="pessoa.ufcn" list="ufOptions" emptyField="true" defEmptyFieldValue="0" emptyFieldValue="Selecione..."/>
-            <span class="label label-important">${error.ufcn}</span>
+            <mtw:select klass="span2" name="pessoa.ufCn.id" list="ufOptions" emptyField="true" defEmptyFieldValue="0" emptyFieldValue="Selecione..."/>
+            <span class="label label-important">${error.ufcn.id}</span>
         </div>
     </div>
     <legend>Endereço</legend>
     <div class="control-group">
-        <label class="control-label" for="inputTipo">Tipo:</label>
+        <label class="control-label" for="inputTipologradouro">Tipo:</label>
         <div class="controls">
-            <mtw:select klass="span2" name="pessoa.tipologradouro" list="tipoLogradouroOptions" emptyField="true" defEmptyFieldValue="0" emptyFieldValue="Selecione..."/>
+            <mtw:select klass="span2" name="pessoa.tipoLogradouro" list="tipoLogradouroOptions" emptyField="true" defEmptyFieldValue="0" emptyFieldValue="Selecione..."/>
             <span class="label label-important">${error.tipologradouro}</span>
         </div>
     </div>
@@ -318,10 +318,10 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="inputComplementocondicaohabitacional">Complemento das condições habitacionais:</label>
+        <label class="control-label" for="inputComplementohabitacional">Complemento das condições habitacionais:</label>
         <div class="controls">
-            <mtw:input type="text" id="inputComplementocondicaohabitacional" name="pessoa.complementoCondicaoHabitacional"/>
-            <span class="label label-important">${error.complementocondicaohabitacional}</span>
+            <mtw:input type="text" id="inputComplementohabitacional" name="pessoa.complementoHabitacional"/>
+            <span class="label label-important">${error.complementohabitacional}</span>
         </div>
     </div>
     <div class="control-group">

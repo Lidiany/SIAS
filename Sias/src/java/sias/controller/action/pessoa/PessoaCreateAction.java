@@ -48,11 +48,11 @@ public class PessoaCreateAction extends BaseAction {
         form.put("numeroRg", input.getString("pessoa.numeroRg"));
         form.put("orgaoExpedidor", input.getString("pessoa.orgaoExpedidor"));
         form.put("dataEmissaoRg", input.getString("pessoa.dataEmissaoRg"));
-        form.put("ufRg", input.getLong("pessoa.ufRg"));
+        form.put("ufRg.id", input.getLong("pessoa.ufRg.id"));
         form.put("numeroCtps", input.getString("pessoa.numeroCtps"));
         form.put("serie", input.getString("pessoa.serie"));
         form.put("dataEmissaoCtps", input.getString("pessoa.dataEmissaoCtps"));
-        form.put("ufCtps", input.getLong("pessoa.ufCtps"));
+        form.put("ufCtps.id", input.getLong("pessoa.ufCtps.id"));
         form.put("numeroTituloEleitoral", input.getString("pessoa.numeroTituloEleitoral"));
         form.put("zona", input.getString("pessoa.zona"));
         form.put("secao", input.getString("pessoa.secao"));
@@ -62,7 +62,7 @@ public class PessoaCreateAction extends BaseAction {
         form.put("livro", input.getString("pessoa.livro"));
         form.put("folha", input.getString("pessoa.folha"));
         form.put("dataEmissaoCn", input.getString("pessoa.dataEmissaoCn"));
-        form.put("ufCn", input.getLong("pessoa.ufCn"));
+        form.put("ufCn.id", input.getLong("pessoa.ufCn.id"));
         form.put("tipoLogradouro", input.getString("pessoa.tipoLogradouro"));
         form.put("logradouro", input.getString("pessoa.logradouro"));
         form.put("numero", input.getString("pessoa.numero"));
@@ -125,7 +125,7 @@ public class PessoaCreateAction extends BaseAction {
             pessoa.setEstadoCivil((String) form.get("estadoCivil"));
             pessoa.setTelefone((String) form.get("telefone"));
             
-            String dataAtualizacaoCadastro = input.getString("dataAtualizacaoCadastro");
+            String dataAtualizacaoCadastro = (String)form.get("dataAtualizacaoCadastro");
             if (dataAtualizacaoCadastro != null && (!dataAtualizacaoCadastro.isEmpty())) {
                 pessoa.setDataAtualizacaoCadastro(new Date(sdf.parse(dataAtualizacaoCadastro).getTime()));
             }
@@ -137,23 +137,23 @@ public class PessoaCreateAction extends BaseAction {
             pessoa.setNumeroRg((String) form.get("numeroRg"));
             pessoa.setOrgaoExpedidor((String) form.get("orgaoExpedidor"));
             
-            String dataEmissaoRg = input.getString("dataEmissaoRg");
+            String dataEmissaoRg = (String)form.get("dataEmissaoRg");
             if (dataEmissaoRg != null && (!dataEmissaoRg.isEmpty())) {
                 pessoa.setDataEmissaoRg(new Date(sdf.parse(dataEmissaoRg).getTime()));
             }
-            
-            Uf ufRg = ServiceLocator.getUfService().readById((Long) form.get("ufRg"));
+
+            Uf ufRg = ServiceLocator.getUfService().readById((Long) form.get("ufRg.id"));
             pessoa.setUfRg(ufRg);
 
             pessoa.setNumeroCtps((String) form.get("numeroCtps"));
             pessoa.setSerie((String) form.get("serie"));
             
-            String dataEmissaoCtps = input.getString("dataEmissaoCtps");
+            String dataEmissaoCtps = (String)form.get("dataEmissaoCtps");
             if (dataEmissaoCtps != null && (!dataEmissaoCtps.isEmpty())) {
                 pessoa.setDataEmissaoCtps(new Date(sdf.parse(dataEmissaoCtps).getTime()));
             }
             
-            Uf ufCtps = ServiceLocator.getUfService().readById((Long) form.get("ufCtps"));
+            Uf ufCtps = ServiceLocator.getUfService().readById((Long) form.get("ufCtps.id"));
             pessoa.setUfCtps(ufCtps);
 
             pessoa.setNumeroTituloEleitoral((String) form.get("numeroTituloEleitoral"));
@@ -165,12 +165,12 @@ public class PessoaCreateAction extends BaseAction {
             pessoa.setLivro((String) form.get("livro"));
             pessoa.setFolha((String) form.get("folha"));
             
-            String dataEmissaoCn = input.getString("dataEmissaoCn");
+            String dataEmissaoCn = (String)form.get("dataEmissaoCn");
             if (dataEmissaoCn != null && (!dataEmissaoCn.isEmpty())) {
                 pessoa.setDataEmissaoCn(new Date(sdf.parse(dataEmissaoCn).getTime()));
             }
             
-            Uf ufCn = ServiceLocator.getUfService().readById((Long) form.get("ufCn"));
+            Uf ufCn = ServiceLocator.getUfService().readById((Long) form.get("ufCn.id"));
             pessoa.setUfCn(ufCn);
 
             pessoa.setTipoLogradouro((String) form.get("tipoLogradouro"));
@@ -190,7 +190,7 @@ public class PessoaCreateAction extends BaseAction {
             pessoa.setPontoReferencia((String) form.get("pontoReferencia"));
             pessoa.setAbrigo((String) form.get("abrigo"));
             
-            String dataAtualizacaoEndereco = input.getString("dataAtualizacaoEndereco");
+            String dataAtualizacaoEndereco = (String)form.get("dataAtualizacaoEndereco");
             if (dataAtualizacaoEndereco != null && (!dataAtualizacaoEndereco.isEmpty())) {
                 pessoa.setDataAtualizacaoEndereco(new Date(sdf.parse(dataAtualizacaoEndereco).getTime()));
             }
@@ -200,7 +200,7 @@ public class PessoaCreateAction extends BaseAction {
             pessoa.setAreaRisco((String) form.get("areaRisco"));
             pessoa.setComplementoHabitacional((String) form.get("complementoHabitacional"));
             
-            String dataAtualizacaoHabitacional = input.getString("dataAtualizacaoHabitacional");
+            String dataAtualizacaoHabitacional = (String)form.get("dataAtualizacaoHabitacional");
             if (dataAtualizacaoHabitacional != null && (!dataAtualizacaoHabitacional.isEmpty())) {
                 pessoa.setDataAtualizacaoHabitacional(new Date(sdf.parse(dataAtualizacaoHabitacional).getTime()));
             }
@@ -225,7 +225,7 @@ public class PessoaCreateAction extends BaseAction {
             
             pessoa.setQualificacaoProfissional((String) form.get("qualificacaoProfissional"));
             
-            String dataRenda = input.getString("dataRenda");
+            String dataRenda = (String)form.get("dataRenda");
             if (dataRenda != null && (!dataRenda.isEmpty())) {
                 pessoa.setDataRenda(new Date(sdf.parse(dataRenda).getTime()));
             }
@@ -233,7 +233,7 @@ public class PessoaCreateAction extends BaseAction {
             pessoa.setRenda((Float) form.get("renda"));
             pessoa.setAposentadoPensionista((String) form.get("aposentadoPensionista"));
             
-            String dataDesligamento = input.getString("dataDesligamento");
+            String dataDesligamento = (String)form.get("dataDesligamento");
             if (dataDesligamento != null && (!dataDesligamento.isEmpty())) {
                 pessoa.setDataDesligamento(new Date(sdf.parse(dataDesligamento).getTime()));
             }
