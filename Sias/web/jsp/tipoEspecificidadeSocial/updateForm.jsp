@@ -2,7 +2,7 @@
 <%@include file="../../WEB-INF/imports.jspf"%>
 <mtw:form klass="form-horizontal" action="TipoEspecificidadeSocialUpdate.mtw" method="post">
     <mtw:input type="hidden" name="tipoEspecificidadeSocial.id"/>
-    <legend>Alterar Tipo Especificidade Social</legend>
+    <legend>Alterar Especificidade Familiar</legend>
     <div class="control-group">
         <label class="control-label" for="inputDescricao">Descrição:</label>
         <div class="controls">

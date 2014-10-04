@@ -135,8 +135,8 @@
         <div class="controls">
             <mtw:input klass="span2" type="text" id="inputNumerorg" name="pessoa.numeroRg"/>
             <span class="label label-important">${error.numerorg}</span>
-            <td>Orgão expeditor:</td>
-            <mtw:input klass="span1" type="text" id="inputOrgaoexpedidor" name="pessoa.orgaoExpedidor"/>
+            <td>Orgão expedidor:</td>
+            <mtw:input klass="span1" type="text" id="inputOrgaoexpedidor" name="pessoa.orgaoExpedidor" style="text-transform:uppercase"/>
             <span class="label label-important">${error.orgaoexpedidor}</span>
             <td>Data emissão:</td>
             <mtw:inputDate klass="span2" dateFormat="dd/mm/yyyy" id="inputDataemissaorg" name="pessoa.dataEmissaoRg"/>

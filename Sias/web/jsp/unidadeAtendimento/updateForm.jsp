@@ -2,7 +2,7 @@
 <%@include file="../../WEB-INF/imports.jspf"%>
 <mtw:form klass="form-horizontal" action="UnidadeAtendimentoUpdate.mtw" method="post">
     <mtw:input type="hidden" name="unidadeatendimento.id"/>
-    <legend>Alterar Unidade Atendimento</legend>
+    <legend>Alterar Unidade de Atendimento</legend>
     <div class="control-group">
         <label class="control-label" for="inputNome">Nome:</label>
         <div class="controls">

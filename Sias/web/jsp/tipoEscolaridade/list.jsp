@@ -2,7 +2,7 @@
 <%@include file="../../WEB-INF/imports.jspf"%>
 
 <legend><strong>1. Procura de escolaridade</strong></legend>
-<legend>> 1. Procura por escolaridade</legend>
+<legend>> 1. Procurar por escolaridade</legend>
 <div class="input-append">
     <mtw:form action="TipoEscolaridadeRead.mtw" method="post">
         <label class="control-label">Escolaridade:
@@ -13,7 +13,7 @@
     </mtw:form>
 </div>
 
-<legend><strong>> 1. Escolaridade(es) encontrada(as)</strong></legend>
+<legend><strong>> 1. Escolaridade(s) encontrada(s)</strong></legend>
 <div class="tabela">
     <display:table name="lista" id="item" pagesize="15" requestURI="" defaultsort="1" sort="list">
         <display:column property="codigo" sortable="true" title="Código" style="width:10%;"/>

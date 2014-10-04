@@ -2,7 +2,7 @@
 <%@include file="../../WEB-INF/imports.jspf"%>
 
 <legend><strong>1. Procura de parentesco</strong></legend>
-<legend>> 1. Procura por parentesco</legend>
+<legend>> 1. Procurar por parentesco</legend>
 <div class="input-append">
     <mtw:form action="TipoParentescoRead.mtw" method="post">
         <label class="control-label">Parentesco:
@@ -13,7 +13,7 @@
     </mtw:form>
 </div>
 
-<legend><strong>> 1. Parentesco(os) encontrado(os)</strong></legend>
+<legend><strong>> 1. Parentesco(s) encontrado(s)</strong></legend>
 <div class="tabela">
     <display:table name="lista" id="item" pagesize="15" requestURI="" defaultsort="1" sort="list">
         <display:column property="codigo" sortable="true" title="Código" style="width:10%;"/>

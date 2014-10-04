@@ -2,7 +2,7 @@
 <%@include file="../../WEB-INF/imports.jspf"%>
 
 <legend><strong>1. Procura Forma de Ingresso</strong></legend>
-<legend> 1. Procura por Forma de Ingresso</legend>
+<legend> 1. Procurar por Forma de Ingresso</legend>
 <div class="input-append">
     <mtw:form action="FormaIngressoRead.mtw" method="post">
         <label class="control-label">Forma de ingresso:
@@ -13,7 +13,7 @@
     </mtw:form>
 </div>
 
-<legend><strong>> 1. Forma de Ingresso encontrada(as)</strong></legend>
+<legend><strong>> 1. Forma de Ingresso encontrada(s)</strong></legend>
 <div class="tabela">
     <display:table name="lista" id="item" pagesize="15" requestURI="" defaultsort="1" sort="list">
         <display:column property="codigo" sortable="true" title="Código" style="width:10%;"/>

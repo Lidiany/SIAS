@@ -2,7 +2,7 @@
 <%@include file="../../WEB-INF/imports.jspf"%>
 
 <legend><strong>1. Procura de ocupação</strong></legend>
-<legend>> 1. Procura por ocupação</legend>
+<legend>> 1. Procurar por ocupação</legend>
 <div class="input-append">
     <mtw:form action="TipoOcupacaoRead.mtw" method="post">
         <label class="control-label">Ocupação:
@@ -13,7 +13,7 @@
     </mtw:form>
 </div>
 
-<legend><strong>> 1. Ocupação(oes) encontrada(as)</strong></legend>
+<legend><strong>> 1. Ocupação(ões) encontrada(s)</strong></legend>
 <div class="tabela">
     <display:table name="lista" id="item" pagesize="15" requestURI="" defaultsort="1" sort="list">
         <display:column property="codigo" sortable="true" title="Código" style="width:10%;"/>

@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="../../WEB-INF/imports.jspf"%>
 <mtw:form klass="form-horizontal" action="ColaboradorCreate.mtw" method="post">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <legend>Novo Colaborador</legend>
     <div class="control-group">
         <label class="control-label" for="inputNome">Unidade Atendimento:</label>

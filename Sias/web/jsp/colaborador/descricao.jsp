@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="../../WEB-INF/imports.jspf"%>
 <mtw:form klass="form-horizontal" action="ColaboradorDescricao.mtw" method="post">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <legend>Descrição Colaborador</legend>
     <div class="control-group">
         <label class="control-label" for="inputUnidadeatendimentoNome">Unidade de Atendimento: </label>
@@ -25,7 +26,7 @@
         <div class="controls">
             <mtw:input klass="span2" type="text" id="inputNumerorg" name="numerorg" value="${numerorg}"/>
             <td>Órgão Expedidor: </td>
-            <mtw:input klass="span1" type="text" id="inputOrgaoexpedidor" name="orgaoexpedidor" value="${orgaoexpedidor}"/>
+            <mtw:input klass="span1" type="text" id="inputOrgaoexpedidor" name="orgaoexpedidor" style="text-transform:uppercase" value="${orgaoexpedidor}"/>
             <td>Data Emissão: </td>
             <mtw:input klass="span2" type="text" id="inputDataemissao" name="dataemissao" value="${dataemissao}"/>
             <td>UF Emissão: </td>

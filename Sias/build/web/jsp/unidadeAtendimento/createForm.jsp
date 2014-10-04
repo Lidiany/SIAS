@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="../../WEB-INF/imports.jspf"%>
 <mtw:form klass="form-horizontal" action="UnidadeAtendimentoCreate.mtw" method="post">
-    <legend>Novo Unidade Atendimento</legend>
+    <legend>Nova Unidade de Atendimento</legend>
     <div class="control-group">
         <label class="control-label" for="inputNome">Nome:</label>
         <div class="controls">
@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="inputNumerounidade">Número Unidade:</label>
+        <label class="control-label" for="inputNumerounidade">Número da Unidade:</label>
         <div class="controls">
             <mtw:input klass="span2" type="text" id="inputNumerounidade" name="numerounidade"/>
             <span class="label label-important">${error.numerounidade}</span>

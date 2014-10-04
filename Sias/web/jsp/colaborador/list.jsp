@@ -15,6 +15,7 @@
 
 <legend><strong>> 1. Colaborador(es) encontrado(s)</strong></legend>
 <div class="tabela">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <display:table name="lista" id="item" pagesize="15" requestURI="" defaultsort="1" sort="list">
         <display:column class="pull-lift" property="nome" sortable="true" title="Nome" style="width:45%;"/>
         <display:column class="pull-right" property="cpf" sortable="true" title="CPF" style="width:29%;"/>
@@ -49,11 +50,11 @@
 </div>
 
 <script>
-    $(function(){
-        $("td.deleteLink a").click(function(){
+    $(function() {
+        $("td.deleteLink a").click(function() {
             $('#confirmDelete').modal('show');
             $("#confirmDelete .btn-danger").attr("href", $(this).attr("href"));
-            return false; 
+            return false;
         });
     });
 </script>

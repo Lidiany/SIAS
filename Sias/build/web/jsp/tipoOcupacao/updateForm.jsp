@@ -2,7 +2,7 @@
 <%@include file="../../WEB-INF/imports.jspf"%>
 <mtw:form klass="form-horizontal" action="TipoOcupacaoUpdate.mtw" method="post">
     <mtw:input type="hidden" name="tipoOcupacao.id"/>
-    <legend>Alterar Tipo Ocupacao</legend>
+    <legend>Alterar Tipo Ocupação</legend>
     <div class="control-group">
         <label class="control-label" for="inputCodigo">Código:</label>
         <div class="controls">

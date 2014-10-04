@@ -2,7 +2,7 @@
 <%@include file="../../WEB-INF/imports.jspf"%>
 
 <legend><strong>1. Procura de especificidade familiar</strong></legend>
-<legend>> 1. Procura por especificidade familiar</legend>
+<legend>> 1. Procurar por especificidade familiar</legend>
 <div class="input-append">
     <mtw:form action="TipoEspecificidadeSocialRead.mtw" method="post">
         <label class="control-label"> Especificidade Familiar:

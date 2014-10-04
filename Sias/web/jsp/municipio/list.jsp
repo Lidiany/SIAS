@@ -2,7 +2,7 @@
 <%@include file="../../WEB-INF/imports.jspf"%>
 
 <legend><strong>1. Procura de Município</strong></legend>
-<legend>> 1. Procura por município</legend>
+<legend>> 1. Procurar por município</legend>
 <div class="input-append">
     <mtw:form action="MunicipioRead.mtw" method="post">
         <label class="control-label"> Município:

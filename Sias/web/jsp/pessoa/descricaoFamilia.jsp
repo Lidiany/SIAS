@@ -130,7 +130,7 @@
             <mtw:input klass="span2" type="text" id="inputNumerorg" name="numerorg" value="${numerorg}"/>
             <span class="label label-important">${error.numerorg}</span>
             <td>Orgão expedidor:</td>
-            <mtw:input klass="span1" type="text" id="inputOrgaoexpedidor" name="orgaoexpedidor" value="${orgaoexpedidor}"/>
+            <mtw:input klass="span1" type="text" id="inputOrgaoexpedidor" name="orgaoexpedidor" value="${orgaoexpedidor}" style="text-transform:uppercase"/>
             <span class="label label-important">${error.orgaoexpedidor}</span>
             <td>Data emissão:</td>
             <mtw:input klass="span2" type="text" id="inputDataemissaorg" name="dataemissaorg" value="${dataemissaorg}"/>

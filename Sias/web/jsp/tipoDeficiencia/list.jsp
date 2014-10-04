@@ -2,7 +2,7 @@
 <%@include file="../../WEB-INF/imports.jspf"%>
 
 <legend><strong>1. Procura por deficiência</strong></legend>
-<legend>> 1. Procura por deficiência</legend>
+<legend>> 1. Procurar por deficiência</legend>
 <div class="input-append">
     <mtw:form action="TipoDeficienciaRead.mtw" method="post">
         <label class="control-label"> Deficiência:

@@ -2,6 +2,7 @@
 <%@include file="../../WEB-INF/imports.jspf"%>
 <mtw:form klass="form-horizontal" action="ColaboradorUpdate.mtw" method="post">
     <mtw:input type="hidden" name="colaborador.id"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <legend>Alterar Colaborador</legend>
     <div class="control-group">
         <label class="control-label" for="inputUnidadeatendimento">Unidade Atendimento:</label>

@@ -12,7 +12,7 @@
     <div class="control-group">
         <label class="control-label" for="inputDescricao">Descrição:</label>
         <div class="controls">
-            <mtw:input type="text" id="inputDescricao" name="descricao"/>
+            <mtw:input type="text" id="inputDescricao" name="descricao" />
             <span class="label label-important">${error.descricao}</span>
         </div>
     </div>

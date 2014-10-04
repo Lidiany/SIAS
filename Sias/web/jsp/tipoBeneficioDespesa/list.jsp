@@ -2,7 +2,7 @@
 <%@include file="../../WEB-INF/imports.jspf"%>
 
 <legend><strong>1. Procura de benefício/despesa</strong></legend>
-<legend>> 1. Procura por benefício/despesa</legend>
+<legend>> 1. Procurar por benefício/despesa</legend>
 <div class="input-append">
     <mtw:form action="TipoBeneficioDespesaRead.mtw" method="post">
         <label class="control-label"> Benefício/Despesa:
