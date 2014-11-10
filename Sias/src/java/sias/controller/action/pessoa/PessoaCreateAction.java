@@ -11,7 +11,6 @@ import sias.model.pojo.Municipio;
 import sias.model.pojo.Pessoa;
 import sias.model.pojo.TipoBeneficioDespesa;
 import sias.model.pojo.TipoDeficiencia;
-import sias.model.pojo.TipoEscolaridade;
 import sias.model.pojo.TipoEspecificidadeSocial;
 import sias.model.pojo.TipoOcupacao;
 import sias.model.pojo.TipoParentesco;
@@ -81,18 +80,6 @@ public class PessoaCreateAction extends BaseAction {
         form.put("complementoHabitacional", input.getString("pessoa.complementoHabitacional"));
         form.put("dataAtualizacaoHabitacional", input.getString("pessoa.dataAtualizacaoHabitacional"));
         form.put("tipoEspecificidadeSocial.id", input.getLong("pessoa.tipoEspecificidadeSocial.id"));
-        form.put("dataDesligamento", input.getString("pessoa.dataDesligamento"));
-        form.put("motivoDesligamento", input.getString("pessoa.motivoDesligamento"));
-        form.put("lerEscrever", input.getString("pessoa.lerEscrever"));
-        form.put("frequenciaEscolar", input.getString("pessoa.frequenciaEscolar"));
-        form.put("tipoEscolaridade.id", input.getLong("pessoa.tipoEscolaridade.id"));
-        form.put("tipoDeficiencia.id", input.getLong("pessoa.tipoDeficiencia.id"));
-        form.put("tipoOcupacao.id", input.getLong("pessoa.tipoOcupacao.id"));
-        form.put("qualificacaoProfissional", input.getString("pessoa.qualificacaoProfissional"));
-        form.put("dataRenda", input.getString("pessoa.dataRenda"));
-        form.put("renda", input.getFloat("pessoa.renda"));
-        form.put("aposentadoPensionista", input.getString("pessoa.aposentadoPensionista"));
-        form.put("tipoBeneficioDespesa.id", input.getLong("pessoa.tipoBeneficioDespesa.id"));
         Map<String, String> error = ServiceLocator.getPessoaService().validateForCreate(form);
         if (error == null || error.isEmpty()) {
             Pessoa pessoa = new Pessoa();
@@ -208,38 +195,6 @@ public class PessoaCreateAction extends BaseAction {
             TipoEspecificidadeSocial tipoEspecificidadeSocial = ServiceLocator.getTipoEspecificidadeSocialService().readById((Long) form.get("tipoEspecificidadeSocial.id"));
             pessoa.setTipoEspecificidadeSocial(tipoEspecificidadeSocial);
             
-            TipoBeneficioDespesa tipoBeneficioDespesa = ServiceLocator.getTipoBeneficioDespesaService().readById((Long) form.get("tipoBeneficioDespesa.id"));
-            pessoa.setTipoBeneficioDespesa(tipoBeneficioDespesa);
-            
-            pessoa.setLerEscrever((String) form.get("lerEscrever"));
-            pessoa.setFrequenciaEscolar((String) form.get("frequenciaEscolar"));
-            
-            TipoEscolaridade tipoEscolaridade = ServiceLocator.getTipoEscolaridadeService().readById((Long) form.get("tipoEscolaridade.id"));
-            pessoa.setTipoEscolaridade(tipoEscolaridade);
-            
-            TipoDeficiencia tipoDeficiencia = ServiceLocator.getTipoDeficienciaService().readById((Long) form.get("tipoDeficiencia.id"));
-            pessoa.setTipoDeficiencia(tipoDeficiencia);
-            
-            TipoOcupacao tipoOcupacao = ServiceLocator.getTipoOcupacaoService().readById((Long) form.get("tipoOcupacao.id"));
-            pessoa.setTipoOcupacao(tipoOcupacao);
-            
-            pessoa.setQualificacaoProfissional((String) form.get("qualificacaoProfissional"));
-            
-            String dataRenda = (String)form.get("dataRenda");
-            if (dataRenda != null && (!dataRenda.isEmpty())) {
-                pessoa.setDataRenda(new Date(sdf.parse(dataRenda).getTime()));
-            }
-            
-            pessoa.setRenda((Float) form.get("renda"));
-            pessoa.setAposentadoPensionista((String) form.get("aposentadoPensionista"));
-            
-            String dataDesligamento = (String)form.get("dataDesligamento");
-            if (dataDesligamento != null && (!dataDesligamento.isEmpty())) {
-                pessoa.setDataDesligamento(new Date(sdf.parse(dataDesligamento).getTime()));
-            }
-            
-            pessoa.setMotivoDesligamento((String) form.get("motivoDesligamento"));
-
             ServiceLocator.getPessoaService().create(pessoa);
             consequence = SUCCESS;
         } else {

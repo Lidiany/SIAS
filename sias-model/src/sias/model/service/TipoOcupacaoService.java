@@ -34,6 +34,7 @@ public class TipoOcupacaoService implements BaseTipoOcupacaoService {
             TipoOcupacaoDAO dao = new TipoOcupacaoDAO();
             tipoOcupacao = dao.readById(id, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -50,6 +51,7 @@ public class TipoOcupacaoService implements BaseTipoOcupacaoService {
             TipoOcupacaoDAO dao = new TipoOcupacaoDAO();
             lista = dao.readByCriteria(criteria, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -65,6 +67,7 @@ public class TipoOcupacaoService implements BaseTipoOcupacaoService {
             TipoOcupacaoDAO dao = new TipoOcupacaoDAO();
             dao.update(pojo, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -79,6 +82,7 @@ public class TipoOcupacaoService implements BaseTipoOcupacaoService {
             TipoOcupacaoDAO dao = new TipoOcupacaoDAO();
             dao.delete(id, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();

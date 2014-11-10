@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
 <%@include file="../../WEB-INF/imports.jspf"%>
 
 <legend><strong>1. Procura de colaborador</strong></legend>
@@ -15,7 +15,6 @@
 
 <legend><strong>> 1. Colaborador(es) encontrado(s)</strong></legend>
 <div class="tabela">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <display:table name="lista" id="item" pagesize="15" requestURI="" defaultsort="1" sort="list">
         <display:column class="pull-lift" property="nome" sortable="true" title="Nome" style="width:45%;"/>
         <display:column class="pull-right" property="cpf" sortable="true" title="CPF" style="width:29%;"/>

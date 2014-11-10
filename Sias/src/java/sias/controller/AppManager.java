@@ -32,7 +32,15 @@ import sias.controller.action.unidadeAtendimento.UnidadeAtendimentoShowFormActio
 import sias.controller.action.unidadeAtendimento.UnidadeAtendimentoUpdateAction;
 import static org.mentawai.core.ApplicationManager.ERROR;
 import static org.mentawai.core.ApplicationManager.SUCCESS;
+import sias.controller.action.beneficioDespesa.BeneficioDespesaCreateAction;
+import sias.controller.action.beneficioDespesa.BeneficioDespesaDeleteAction;
+import sias.controller.action.beneficioDespesa.BeneficioDespesaReadAction;
+import sias.controller.action.beneficioDespesa.BeneficioDespesaShowFormAction;
 import sias.controller.action.colaborador.ColaboradorDescricaoAction;
+import sias.controller.action.deficienciaPessoa.DeficienciaPessoaCreateAction;
+import sias.controller.action.deficienciaPessoa.DeficienciaPessoaDeleteAction;
+import sias.controller.action.deficienciaPessoa.DeficienciaPessoaReadAction;
+import sias.controller.action.deficienciaPessoa.DeficienciaPessoaShowFormAction;
 import sias.controller.action.formaIngresso.FormaIngressoCreateAction;
 import sias.controller.action.formaIngresso.FormaIngressoDeleteAction;
 import sias.controller.action.formaIngresso.FormaIngressoReadAction;
@@ -41,8 +49,10 @@ import sias.controller.action.formaIngresso.FormaIngressoUpdateAction;
 import sias.controller.action.pessoa.PessoaCreateAction;
 import sias.controller.action.pessoa.PessoaDeleteAction;
 import sias.controller.action.pessoa.PessoaDescricaoAction;
+import sias.controller.action.pessoa.PessoaEscolaridadeAction;
 import sias.controller.action.pessoa.PessoaReadAction;
 import sias.controller.action.pessoa.PessoaShowFormAction;
+import sias.controller.action.pessoa.PessoaTrabalhoRendaAction;
 import sias.controller.action.pessoa.PessoaUpdateAction;
 import sias.controller.action.tipoBeneficioDespesa.TipoBeneficioDespesaCreateAction;
 import sias.controller.action.tipoBeneficioDespesa.TipoBeneficioDespesaDeleteAction;
@@ -74,7 +84,13 @@ import sias.controller.action.unidadeAtendimento.UnidadeAtendimentoDescricaoActi
 public class AppManager extends ApplicationManager {
 
     @Override
+    public void init() {
+        this.setReqCharEncoding("UTF8");
+    }
+
+    @Override
     public void loadActions() {
+        this.setReqCharEncoding("UTF8");
         //Configurar App.
         ActionConfig ac = null;
 
@@ -369,9 +385,14 @@ public class AppManager extends ApplicationManager {
         ac.addConsequence("CREATE", new Forward("jsp/pessoa/membroFamilia.page"));
         this.add(ac);
 
-        /*   ac = new ActionConfig("PessoaMembroEscolaridade", PessoaShowFormAction.class);
-         this.add(ac);
-         */
+        ac = new ActionConfig("PessoaMembroEscolaridade", PessoaEscolaridadeAction.class);
+        ac.addConsequence(SUCCESS, new Forward("jsp/pessoa/membroEscolaridade.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("PessoaTrabalhoRenda", PessoaTrabalhoRendaAction.class);
+        ac.addConsequence(SUCCESS, new Forward("jsp/pessoa/trabalhoRenda.page"));
+        this.add(ac);
+
         ac = new ActionConfig("PessoaCreate", PessoaCreateAction.class);
         ac.addConsequence(SUCCESS, new Redirect("PessoaRead.mtw"));
         ac.addConsequence(ERROR, new Forward("jsp/pessoa/createForm.page"));
@@ -392,6 +413,54 @@ public class AppManager extends ApplicationManager {
 
         ac = new ActionConfig("PessoaDescricaoFamilia", PessoaDescricaoAction.class);
         ac.addConsequence(SUCCESS, new Forward("jsp/pessoa/descricaoFamilia.page"));
+        this.add(ac);
+
+        //Beneficio/Despesa
+        ac = new ActionConfig("BeneficioDespesaRead", BeneficioDespesaReadAction.class);
+        ac.addConsequence(SUCCESS, new Forward("jsp/beneficioDespesa/list.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("BeneficioDespesaShowForm", BeneficioDespesaShowFormAction.class);
+        ac.addConsequence("CREATE", new Forward("jsp/beneficioDespesa/createForm.page"));
+        ac.addConsequence("UPDATE", new Forward("jsp/beneficioDespesa/updateForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("BeneficioDespesaCreate", BeneficioDespesaCreateAction.class);
+        ac.addConsequence(SUCCESS, new Redirect("BeneficioDespesaRead.mtw"));
+        ac.addConsequence(ERROR, new Forward("jsp/beneficioDespesa/createForm.page"));
+        this.add(ac);
+
+        /*   ac = new ActionConfig("TipoBeneficioDespesaUpdate", TipoBeneficioDespesaUpdateAction.class);
+         ac.addConsequence(SUCCESS, new Redirect("TipoBeneficioDespesaRead.mtw"));
+         ac.addConsequence(ERROR, new Forward("jsp/tipoBeneficioDespesa/updateForm.page"));
+         this.add(ac);
+         */
+        ac = new ActionConfig("BeneficioDespesaDelete", BeneficioDespesaDeleteAction.class);
+        ac.addConsequence(SUCCESS, new Forward("BeneficioDespesaRead.mtw"));
+        this.add(ac);
+
+        //Deficiência Pessoa
+        ac = new ActionConfig("DeficienciaPessoaRead", DeficienciaPessoaReadAction.class);
+        ac.addConsequence(SUCCESS, new Forward("jsp/deficienciaPessoa/list.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("DeficienciaPessoaShowForm", DeficienciaPessoaShowFormAction.class);
+        ac.addConsequence("CREATE", new Forward("jsp/deficienciaPessoa/createForm.page"));
+        ac.addConsequence("UPDATE", new Forward("jsp/deficienciaPessoa/updateForm.page"));
+        this.add(ac);
+
+        ac = new ActionConfig("DeficienciaPessoaCreate", DeficienciaPessoaCreateAction.class);
+        ac.addConsequence(SUCCESS, new Redirect("DeficienciaPessoaRead.mtw"));
+        ac.addConsequence(ERROR, new Forward("jsp/deficienciaPessoa/createForm.page"));
+        this.add(ac);
+
+        /*   ac = new ActionConfig("TipoBeneficioDespesaUpdate", TipoBeneficioDespesaUpdateAction.class);
+         ac.addConsequence(SUCCESS, new Redirect("TipoBeneficioDespesaRead.mtw"));
+         ac.addConsequence(ERROR, new Forward("jsp/tipoBeneficioDespesa/updateForm.page"));
+         this.add(ac);
+         */
+        ac = new ActionConfig("DeficienciaPessoaDelete", DeficienciaPessoaDeleteAction.class);
+        ac.addConsequence(SUCCESS, new Forward("DeficienciaPessoaRead.mtw"));
         this.add(ac);
 
     }

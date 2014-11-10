@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
 <%@include file="../../WEB-INF/imports.jspf"%>
 
 <legend><strong>1. Procura por deficiência</strong></legend>

@@ -1,6 +1,7 @@
 package sias.model.service;
 
 import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import sias.model.ConnectionManager;
@@ -33,6 +34,7 @@ public class BeneficioDespesaService implements BaseBeneficioDespesaService {
             BeneficioDespesaDAO dao = new BeneficioDespesaDAO();
             beneficioDespesa = dao.readById(id, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -49,6 +51,7 @@ public class BeneficioDespesaService implements BaseBeneficioDespesaService {
             BeneficioDespesaDAO dao = new BeneficioDespesaDAO();
             lista = dao.readByCriteria(criteria, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -64,6 +67,7 @@ public class BeneficioDespesaService implements BaseBeneficioDespesaService {
             BeneficioDespesaDAO dao = new BeneficioDespesaDAO();
             dao.update(pojo, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -78,6 +82,7 @@ public class BeneficioDespesaService implements BaseBeneficioDespesaService {
             BeneficioDespesaDAO dao = new BeneficioDespesaDAO();
             dao.delete(id, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -87,7 +92,15 @@ public class BeneficioDespesaService implements BaseBeneficioDespesaService {
 
     @Override
     public Map<String, String> validateForCreate(Map<String, Object> properties) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Map<String, String> error = new HashMap<String, String>();
+        if (properties != null) {
+            Float valor = (Float) properties.get("valor");
+            if (valor == null || valor.equals(this)) {
+                error.put("valor", "*");
+            }
+
+        }
+        return error;
     }
 
     @Override

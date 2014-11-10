@@ -38,160 +38,102 @@ public class PessoaDAO implements BaseDAO<Pessoa> {
 
     @Override
     public void create(Pessoa e, Connection conn) throws Exception {
-        String sql = "INSERT INTO pessoa(datainclusao, numeroordem, nome, nomemae, nomepai, nis, cpf, numerorg, orgaoexpedidor, dataemissaorg, ufrg_fk, numeroctps, serie, dataemissaoctps, ufctps_fk, numerotituloeleitoral, zona, secao, cartoriocertidao, numerotermo, livro, folha, dataemissaocn, ufcn_fk, tipocertidao, datanascimento, nacionalidade, ufnacionalidade_fk, municipionacionalidade_fk, sexo, raca, estadocivil, telefone, frequenciaescolar, lerescrever, qualificacaoprofissional, renda, datarenda, aposentadopensionista, arearisco, tiporesidencia, complementoimovel, logradouro, numero, complementoendereco, bairro, cep, pontoreferencia, localizacao, abrigo, tipologradouro, datadesligamento, motivodesligamento, complementopessoa, complementohabitacional, dataatualizacaocadastro, dataatualizacaoendereco, dataatualizacaohabitacional, formaingresso_fk, tipoescolaridade_fk, tipoocupacao_fk, uf_fk, municipio_fk, tipoparentesco_fk, tipoespecificidadesocial_fk, tipodeficiencia_fk, tipobeneficiodespesa_fk, pessoa_fk) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
+        String sql = "INSERT INTO pessoa(tipoparentesco_fk, numeroordem, datainclusao, formaingresso_fk, nome, nomepai, nomemae, sexo, datanascimento, nacionalidade, ufnacionalidade_fk, municipionacionalidade_fk, raca, estadocivil, telefone, dataatualizacaocadastro, complementopessoa, cpf, nis, numerorg, orgaoexpedidor, dataemissaorg, ufrg_fk, numeroctps, serie, dataemissaoctps, ufctps_fk, numerotituloeleitoral, zona, secao, tipocertidao, cartoriocertidao, numerotermo, livro, folha, dataemissaocn, ufcn_fk, tipologradouro, logradouro, numero, complementoendereco, bairro, municipio_fk, uf_fk, cep, localizacao, pontoreferencia, abrigo, dataatualizacaoendereco, tiporesidencia, complementoimovel, arearisco, complementohabitacional, dataatualizacaohabitacional, tipoespecificidadesocial_fk, lerescrever, frequenciaescolar, tipoescolaridade_fk, dataatualizacaoescolaridade, tipodeficiencia_fk, tipobeneficiodespesa_fk, tipoocupacao_fk, qualificacaoprofissional, datarenda, renda, aposentadopensionista, datadesligamento, motivodesligamento, pessoa_fk) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id;";
         PreparedStatement ps = conn.prepareStatement(sql);
         int i = 0;
-        ps.setDate(++i, new Date(e.getDataInclusao().getTime()));
+
+        if (e.getTipoParentesco() != null) {
+            ps.setLong(++i, e.getTipoParentesco().getId());
+        } else {
+            ps.setNull(++i, Types.BIGINT);
+        }
         ps.setInt(++i, e.getNumeroOrdem());
-        ps.setString(++i, e.getNome());
-        ps.setString(++i, e.getNomeMae());
-        ps.setString(++i, e.getNomePai());
-        ps.setString(++i, e.getNis());
-        ps.setString(++i, e.getCpf());
-        ps.setString(++i, e.getNumeroRg());
-        ps.setString(++i, e.getOrgaoExpedidor());
-
-        if (e.getDataEmissaoRg() != null) {
-            ps.setDate(++i, e.getDataEmissaoRg());
-        } else {
-            ps.setNull(++i, Types.DATE);
-        }
-
-        if (e.getUfRg() != null) {
-            ps.setLong(++i, e.getUfRg().getId());
-        } else {
-            ps.setNull(++i, Types.BIGINT);
-        }
-
-        ps.setString(++i, e.getNumeroCtps());
-        ps.setString(++i, e.getSerie());
-
-        if (e.getDataEmissaoCtps() != null) {
-            ps.setDate(++i, e.getDataEmissaoCtps());
-        } else {
-            ps.setNull(++i, Types.DATE);
-        }
-
-        if (e.getUfCtps() != null) {
-            ps.setLong(++i, e.getUfCtps().getId());
-        } else {
-            ps.setNull(++i, Types.BIGINT);
-        }
-
-        ps.setString(++i, e.getNumeroTituloEleitoral());
-        ps.setString(++i, e.getZona());
-        ps.setString(++i, e.getSecao());
-        ps.setString(++i, e.getCartorioCertidao());
-        ps.setString(++i, e.getNumeroTermo());
-        ps.setString(++i, e.getLivro());
-        ps.setString(++i, e.getFolha());
-
-        if (e.getDataEmissaoCn() != null) {
-            ps.setDate(++i, e.getDataEmissaoCn());
-        } else {
-            ps.setNull(++i, Types.DATE);
-        }
-
-        if (e.getUfCn() != null) {
-            ps.setLong(++i, e.getUfCn().getId());
-        } else {
-            ps.setNull(++i, Types.BIGINT);
-        }
-
-        ps.setString(++i, e.getTipoCertidao());
-
-        if (e.getDataNascimento() != null) {
-            ps.setDate(++i, e.getDataNascimento());
-        } else {
-            ps.setNull(++i, Types.DATE);
-        }
-
-        ps.setString(++i, e.getNacionalidade());
-
-        if (e.getUfNacionalidade() != null) {
-            ps.setLong(++i, e.getUfNacionalidade().getId());
-        } else {
-            ps.setNull(++i, Types.BIGINT);
-        }
-
-        if (e.getMunicipioNacionalidade() != null) {
-            ps.setLong(++i, e.getMunicipioNacionalidade().getId());
-        } else {
-            ps.setNull(++i, Types.BIGINT);
-        }
-
-        ps.setString(++i, e.getSexo());
-        ps.setString(++i, e.getRaca());
-        ps.setString(++i, e.getEstadoCivil());
-        ps.setString(++i, e.getTelefone());
-        ps.setString(++i, e.getFrequenciaEscolar());
-        ps.setString(++i, e.getLerEscrever());
-        ps.setString(++i, e.getQualificacaoProfissional());
-        ps.setFloat(++i, e.getRenda());
-
-        if (e.getDataRenda() != null) {
-            ps.setDate(++i, e.getDataRenda());
-        } else {
-            ps.setNull(++i, Types.DATE);
-        }
-
-        ps.setString(++i, e.getAposentadoPensionista());
-        ps.setString(++i, e.getAreaRisco());
-        ps.setString(++i, e.getTipoResidencia());
-        ps.setString(++i, e.getComplementoImovel());
-        ps.setString(++i, e.getLogradouro());
-        ps.setString(++i, e.getNumero());
-        ps.setString(++i, e.getComplementoEndereco());
-        ps.setString(++i, e.getBairro());
-        ps.setString(++i, e.getCep());
-        ps.setString(++i, e.getPontoReferencia());
-        ps.setString(++i, e.getLocalizacao());
-        ps.setString(++i, e.getAbrigo());
-        ps.setString(++i, e.getTipoLogradouro());
-
-        if (e.getDataDesligamento() != null) {
-            ps.setDate(++i, e.getDataDesligamento());
-        } else {
-            ps.setNull(++i, Types.DATE);
-        }
-
-        ps.setString(++i, e.getMotivoDesligamento());
-        ps.setString(++i, e.getComplementoPessoa());
-
-        ps.setString(++i, e.getComplementoHabitacional());
-        
-        
-        if (e.getDataAtualizacaoCadastro() != null) {
-            ps.setDate(++i, e.getDataAtualizacaoCadastro());
-        } else {
-            ps.setNull(++i, Types.DATE);
-        }
-
-        if (e.getDataAtualizacaoEndereco() != null) {
-            ps.setDate(++i, e.getDataAtualizacaoEndereco());
-        } else {
-            ps.setNull(++i, Types.DATE);
-        }
-
-        if (e.getDataAtualizacaoHabitacional() != null) {
-            ps.setDate(++i, e.getDataAtualizacaoHabitacional());
-        } else {
-            ps.setNull(++i, Types.DATE);
-        }
-
+        ps.setDate(++i, new Date(e.getDataInclusao().getTime()));
         if (e.getFormaIngresso() != null) {
             ps.setLong(++i, e.getFormaIngresso().getId());
         } else {
             ps.setNull(++i, Types.BIGINT);
         }
-
-        if (e.getTipoEscolaridade() != null) {
-            ps.setLong(++i, e.getTipoEscolaridade().getId());
+        ps.setString(++i, e.getNome());
+        ps.setString(++i, e.getNomePai());
+        ps.setString(++i, e.getNomeMae());
+        ps.setString(++i, e.getSexo());
+        if (e.getDataNascimento() != null) {
+            ps.setDate(++i, e.getDataNascimento());
+        } else {
+            ps.setNull(++i, Types.DATE);
+        }
+        ps.setString(++i, e.getNacionalidade());
+        if (e.getUfNacionalidade() != null) {
+            ps.setLong(++i, e.getUfNacionalidade().getId());
         } else {
             ps.setNull(++i, Types.BIGINT);
         }
-        if (e.getTipoOcupacao() != null) {
-            ps.setLong(++i, e.getTipoOcupacao().getId());
+        if (e.getMunicipioNacionalidade() != null) {
+            ps.setLong(++i, e.getMunicipioNacionalidade().getId());
+        } else {
+            ps.setNull(++i, Types.BIGINT);
+        }
+        ps.setString(++i, e.getRaca());
+        ps.setString(++i, e.getEstadoCivil());
+        ps.setString(++i, e.getTelefone());
+        if (e.getDataAtualizacaoCadastro() != null) {
+            ps.setDate(++i, e.getDataAtualizacaoCadastro());
+        } else {
+            ps.setNull(++i, Types.DATE);
+        }
+        ps.setString(++i, e.getComplementoPessoa());
+        ps.setString(++i, e.getCpf());
+        ps.setString(++i, e.getNis());
+        ps.setString(++i, e.getNumeroRg());
+        ps.setString(++i, e.getOrgaoExpedidor());
+        if (e.getDataEmissaoRg() != null) {
+            ps.setDate(++i, e.getDataEmissaoRg());
+        } else {
+            ps.setNull(++i, Types.DATE);
+        }
+        if (e.getUfRg() != null) {
+            ps.setLong(++i, e.getUfRg().getId());
+        } else {
+            ps.setNull(++i, Types.BIGINT);
+        }
+        ps.setString(++i, e.getNumeroCtps());
+        ps.setString(++i, e.getSerie());
+        if (e.getDataEmissaoCtps() != null) {
+            ps.setDate(++i, e.getDataEmissaoCtps());
+        } else {
+            ps.setNull(++i, Types.DATE);
+        }
+        if (e.getUfCtps() != null) {
+            ps.setLong(++i, e.getUfCtps().getId());
+        } else {
+            ps.setNull(++i, Types.BIGINT);
+        }
+        ps.setString(++i, e.getNumeroTituloEleitoral());
+        ps.setString(++i, e.getZona());
+        ps.setString(++i, e.getSecao());
+        ps.setString(++i, e.getTipoCertidao());
+        ps.setString(++i, e.getCartorioCertidao());
+        ps.setString(++i, e.getNumeroTermo());
+        ps.setString(++i, e.getLivro());
+        ps.setString(++i, e.getFolha());
+        if (e.getDataEmissaoCn() != null) {
+            ps.setDate(++i, e.getDataEmissaoCn());
+        } else {
+            ps.setNull(++i, Types.DATE);
+        }
+        if (e.getUfCn() != null) {
+            ps.setLong(++i, e.getUfCn().getId());
+        } else {
+            ps.setNull(++i, Types.BIGINT);
+        }
+        ps.setString(++i, e.getTipoLogradouro());
+        ps.setString(++i, e.getLogradouro());
+        ps.setString(++i, e.getNumero());
+        ps.setString(++i, e.getComplementoEndereco());
+        ps.setString(++i, e.getBairro());
+        if (e.getMunicipio() != null) {
+            ps.setLong(++i, e.getMunicipio().getId());
         } else {
             ps.setNull(++i, Types.BIGINT);
         }
@@ -200,20 +142,40 @@ public class PessoaDAO implements BaseDAO<Pessoa> {
         } else {
             ps.setNull(++i, Types.BIGINT);
         }
-        if (e.getMunicipio() != null) {
-            ps.setLong(++i, e.getMunicipio().getId());
+        ps.setString(++i, e.getCep());
+        ps.setString(++i, e.getLocalizacao());
+        ps.setString(++i, e.getPontoReferencia());
+        ps.setString(++i, e.getAbrigo());
+        if (e.getDataAtualizacaoEndereco() != null) {
+            ps.setDate(++i, e.getDataAtualizacaoEndereco());
         } else {
-            ps.setNull(++i, Types.BIGINT);
+            ps.setNull(++i, Types.DATE);
         }
-        if (e.getTipoParentesco() != null) {
-            ps.setLong(++i, e.getTipoParentesco().getId());
+        ps.setString(++i, e.getTipoResidencia());
+        ps.setString(++i, e.getComplementoImovel());
+        ps.setString(++i, e.getAreaRisco());
+        ps.setString(++i, e.getComplementoHabitacional());
+        if (e.getDataAtualizacaoHabitacional() != null) {
+            ps.setDate(++i, e.getDataAtualizacaoHabitacional());
         } else {
-            ps.setNull(++i, Types.BIGINT);
+            ps.setNull(++i, Types.DATE);
         }
         if (e.getTipoEspecificidadeSocial() != null) {
             ps.setLong(++i, e.getTipoEspecificidadeSocial().getId());
         } else {
             ps.setNull(++i, Types.BIGINT);
+        }
+        ps.setString(++i, e.getLerEscrever());
+        ps.setString(++i, e.getFrequenciaEscolar());
+        if (e.getTipoEscolaridade() != null) {
+            ps.setLong(++i, e.getTipoEscolaridade().getId());
+        } else {
+            ps.setNull(++i, Types.BIGINT);
+        }
+        if (e.getDataAtualizacaoEscolaridade() != null) {
+            ps.setDate(++i, e.getDataAtualizacaoEscolaridade());
+        } else {
+            ps.setNull(++i, Types.DATE);
         }
         if (e.getTipoDeficiencia() != null) {
             ps.setLong(++i, e.getTipoDeficiencia().getId());
@@ -225,6 +187,29 @@ public class PessoaDAO implements BaseDAO<Pessoa> {
         } else {
             ps.setNull(++i, Types.BIGINT);
         }
+        if (e.getTipoOcupacao() != null) {
+            ps.setLong(++i, e.getTipoOcupacao().getId());
+        } else {
+            ps.setNull(++i, Types.BIGINT);
+        }
+        ps.setString(++i, e.getQualificacaoProfissional());
+        if (e.getDataRenda() != null) {
+            ps.setDate(++i, e.getDataRenda());
+        } else {
+            ps.setNull(++i, Types.DATE);
+        }
+        if (e.getRenda()!= null) {
+            ps.setFloat(++i, e.getRenda());
+        } else {
+            ps.setNull(++i, Types.FLOAT);
+        }
+        ps.setString(++i, e.getAposentadoPensionista());
+        if (e.getDataDesligamento() != null) {
+            ps.setDate(++i, e.getDataDesligamento());
+        } else {
+            ps.setNull(++i, Types.DATE);
+        }
+        ps.setString(++i, e.getMotivoDesligamento());
         if (e.getPessoa() != null) {
             ps.setLong(++i, e.getPessoa().getId());
         } else {
@@ -346,6 +331,8 @@ public class PessoaDAO implements BaseDAO<Pessoa> {
             tipoParentesco.setId(rs.getLong("tipoParentesco_id"));
             tipoParentesco.setDescricao(rs.getString("tipoParentesco_descricao"));
             e.setTipoParentesco(tipoParentesco);
+
+            e.setDataAtualizacaoEscolaridade(rs.getDate("dataatualizacaoescolaridade"));
 
             TipoEscolaridade tipoEscolaridade = new TipoEscolaridade();
             tipoEscolaridade.setId(rs.getLong("tipoEscolaridade_id"));
@@ -561,6 +548,8 @@ public class PessoaDAO implements BaseDAO<Pessoa> {
             tipoParentesco.setDescricao(rs.getString("tipoParentesco_descricao"));
             pessoa.setTipoParentesco(tipoParentesco);
 
+            pessoa.setDataAtualizacaoEscolaridade(rs.getDate("dataatualizacaoescolaridade"));
+
             TipoEscolaridade tipoEscolaridade = new TipoEscolaridade();
             tipoEscolaridade.setId(rs.getLong("tipoEscolaridade_id"));
             tipoEscolaridade.setDescricao(rs.getString("tipoEscolaridade_descricao"));
@@ -607,7 +596,7 @@ public class PessoaDAO implements BaseDAO<Pessoa> {
 
     @Override
     public void update(Pessoa e, Connection conn) throws Exception {
-        String sql = "UPDATE pessoa SET datainclusao=?, numeroordem=?, nome=?, nomemae=?, nomepai=?, nis=?, cpf=?, numerorg=?, orgaoexpedidor=?, dataemissaorg=?, ufrg_fk=?, numeroctps=?, serie=?, dataemissaoctps=?, ufctps_fk=?, numerotituloeleitoral=?, zona=?, secao=?, cartoriocertidao=?, numerotermo=?, livro=?, folha=?, dataemissaocn=?, ufcn_fk=?, tipocertidao=?, datanascimento=?, nacionalidade=?, ufnacionalidade_fk=?, municipionacionalidade_fk=?, sexo=?, raca=?, estadocivil=?, telefone=?, frequenciaescolar=?, lerescrever=?, qualificacaoprofissional=?, renda=?, datarenda=?, aposentadopensionista=?, arearisco=?, tiporesidencia=?, complementoimovel=?, logradouro=?, numero=?, complementoendereco=?, bairro=?, cep=?, pontoreferencia=?, localizacao=?, abrigo=?, tipologradouro=?, datadesligamento=?, motivodesligamento=?, complementopessoa=?, complementohabitacional=?, dataatualizacaocadastro=?, dataatualizacaoendereco=?, dataatualizacaohabitacional=?, formaingresso_fk=?, tipoescolaridade_fk=?, tipoocupacao_fk=?, uf_fk=?, municipio_fk=?, tipoparentesco_fk=?, tipoespecificidadesocial_fk=?, tipodeficiencia_fk=?, tipobeneficiodespesa_fk=?, pessoa_fk=? WHERE pessoa.id=?;";
+        String sql = "UPDATE pessoa SET datainclusao=?, numeroordem=?, nome=?, nomemae=?, nomepai=?, nis=?, cpf=?, numerorg=?, orgaoexpedidor=?, dataemissaorg=?, ufrg_fk=?, numeroctps=?, serie=?, dataemissaoctps=?, ufctps_fk=?, numerotituloeleitoral=?, zona=?, secao=?, cartoriocertidao=?, numerotermo=?, livro=?, folha=?, dataemissaocn=?, ufcn_fk=?, tipocertidao=?, datanascimento=?, nacionalidade=?, ufnacionalidade_fk=?, municipionacionalidade_fk=?, sexo=?, raca=?, estadocivil=?, telefone=?, frequenciaescolar=?, lerescrever=?, qualificacaoprofissional=?, renda=?, datarenda=?, aposentadopensionista=?, arearisco=?, tiporesidencia=?, complementoimovel=?, logradouro=?, numero=?, complementoendereco=?, bairro=?, cep=?, pontoreferencia=?, localizacao=?, abrigo=?, tipologradouro=?, datadesligamento=?, motivodesligamento=?, complementopessoa=?, complementohabitacional=?, dataatualizacaocadastro=?, dataatualizacaoendereco=?, dataatualizacaohabitacional=?, dataatualizacaoescolaridade=?, formaingresso_fk=?, tipoescolaridade_fk=?, tipoocupacao_fk=?, uf_fk=?, municipio_fk=?, tipoparentesco_fk=?, tipoespecificidadesocial_fk=?, tipodeficiencia_fk=?, tipobeneficiodespesa_fk=?, pessoa_fk=? WHERE pessoa.id=?;";
         PreparedStatement ps = conn.prepareStatement(sql);
         int i = 0;
         ps.setDate(++i, new Date(e.getDataInclusao().getTime()));
@@ -667,9 +656,9 @@ public class PessoaDAO implements BaseDAO<Pessoa> {
         }
 
         ps.setString(++i, e.getTipoCertidao());
-        
+
         if (e.getDataNascimento() != null) {
-        ps.setDate(++i, e.getDataNascimento());
+            ps.setDate(++i, e.getDataNascimento());
         } else {
             ps.setNull(++i, Types.DATE);
         }
@@ -695,13 +684,13 @@ public class PessoaDAO implements BaseDAO<Pessoa> {
         ps.setString(++i, e.getLerEscrever());
         ps.setString(++i, e.getQualificacaoProfissional());
         ps.setFloat(++i, e.getRenda());
-        
-        if (e.getDataRenda() != null){
+
+        if (e.getDataRenda() != null) {
             ps.setDate(++i, e.getDataRenda());
         } else {
             ps.setNull(++i, Types.DATE);
         }
-        
+
         ps.setString(++i, e.getAposentadoPensionista());
         ps.setString(++i, e.getAreaRisco());
         ps.setString(++i, e.getTipoResidencia());
@@ -715,35 +704,41 @@ public class PessoaDAO implements BaseDAO<Pessoa> {
         ps.setString(++i, e.getLocalizacao());
         ps.setString(++i, e.getAbrigo());
         ps.setString(++i, e.getTipoLogradouro());
-        
-        if (e.getDataDesligamento()!= null){
+
+        if (e.getDataDesligamento() != null) {
             ps.setDate(++i, e.getDataDesligamento());
         } else {
             ps.setNull(++i, Types.DATE);
         }
-        
+
         ps.setString(++i, e.getMotivoDesligamento());
         ps.setString(++i, e.getComplementoPessoa());
         ps.setString(++i, e.getComplementoHabitacional());
 
-        if (e.getDataAtualizacaoCadastro()!= null){
+        if (e.getDataAtualizacaoCadastro() != null) {
             ps.setDate(++i, e.getDataAtualizacaoCadastro());
         } else {
             ps.setNull(++i, Types.DATE);
         }
-        
-        if (e.getDataAtualizacaoEndereco()!= null){
+
+        if (e.getDataAtualizacaoEndereco() != null) {
             ps.setDate(++i, e.getDataAtualizacaoEndereco());
         } else {
             ps.setNull(++i, Types.DATE);
         }
-        
-        if (e.getDataAtualizacaoHabitacional()!= null){
+
+        if (e.getDataAtualizacaoHabitacional() != null) {
             ps.setDate(++i, e.getDataAtualizacaoHabitacional());
         } else {
             ps.setNull(++i, Types.DATE);
         }
-        
+
+        if (e.getDataAtualizacaoEscolaridade() != null) {
+            ps.setDate(++i, e.getDataAtualizacaoEscolaridade());
+        } else {
+            ps.setNull(++i, Types.DATE);
+        }
+
         if (e.getMunicipio() != null) {
             ps.setLong(++i, e.getMunicipio().getId());
         } else {

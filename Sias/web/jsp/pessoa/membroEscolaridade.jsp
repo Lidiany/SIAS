@@ -1,7 +1,8 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
 <%@include file="../../WEB-INF/imports.jspf"%>
 <mtw:form klass="form-horizontal" action="PessoaMembroEscolaridade.mtw" method="post">
 <legend><strong>> 2. Cadastro de família/indíviduo > 2.2 Composição Familiar > 2.2.2 Escolaridade</strong></legend>
+    <mtw:input type="hidden" name="pessoa.id"/>
     <legend>Escolaridade</legend>
     <div class="control-group">
         <label class="control-label" for="inputLerescrever">Sabe ler e escrever:</label>

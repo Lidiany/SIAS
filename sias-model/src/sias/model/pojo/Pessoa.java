@@ -1,6 +1,7 @@
 package sias.model.pojo;
 
 import java.sql.Date;
+import java.util.Calendar;
 import sias.model.base.BasePOJO;
 
 public class Pessoa extends BasePOJO {
@@ -72,6 +73,7 @@ public class Pessoa extends BasePOJO {
     private Date dataAtualizacaoCadastro;
     private Date dataAtualizacaoEndereco;
     private Date dataAtualizacaoHabitacional;
+    private Date dataAtualizacaoEscolaridade;
     private String complementoHabitacional;
 
     public Date getDataInclusao() {
@@ -625,4 +627,27 @@ public class Pessoa extends BasePOJO {
         }
         return texto;
     }
+
+    public String getIdade() {
+        String idade = "-";
+        if (dataNascimento != null) {
+            Calendar calendarDtNascimento = Calendar.getInstance();
+            calendarDtNascimento.setTimeInMillis(dataNascimento.getTime());
+            calendarDtNascimento.get(Calendar.YEAR);
+
+            Calendar calendarDtHoje = Calendar.getInstance();
+            calendarDtHoje.setTimeInMillis(System.currentTimeMillis());
+            idade = (calendarDtHoje.get(Calendar.YEAR) - calendarDtNascimento.get(Calendar.YEAR)) + "";
+        }
+        return idade;
+    }
+
+    public Date getDataAtualizacaoEscolaridade() {
+        return dataAtualizacaoEscolaridade;
+    }
+
+    public void setDataAtualizacaoEscolaridade(Date dataAtualizacaoEscolaridade) {
+        this.dataAtualizacaoEscolaridade = dataAtualizacaoEscolaridade;
+    }
+
 }

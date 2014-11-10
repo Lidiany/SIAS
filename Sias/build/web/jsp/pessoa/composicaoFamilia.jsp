@@ -1,6 +1,7 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
 <%@include file="../../WEB-INF/imports.jspf"%>
 
+    
 <legend><strong>> 2. Cadastro de família/indíviduo > 2.2 Composição Familiar</strong></legend>
 <a href="PessoaShowForm.mtw" class="btn">Novo membro familiar</a>
 
@@ -8,8 +9,8 @@
     <display:table name="lista" id="item" pagesize="15" requestURI="" defaultsort="1" sort="list">
         <display:column class="pull-right" property="numeroOrdem" sortable="true" title="Número de Ordem"  style="width:25%;"/>
         <display:column property="nome" sortable="true" title="Nome" style="width:15%;"/>
-        <display:column property="sexo" sortable="true" title="Sexo" style="width:10%;"/>
-        <display:column class="pull-right" property="idade" sortable="true" title="Idade" style="width:10%;"/>
+        <display:column property="sexoAsTexto" sortable="true" title="Sexo" style="width:8%;"/>
+        <display:column class="pull-right" property="idade" sortable="true" title="Idade" style="width:15%;"/>
         <display:column property="tipoParentesco.descricao" sortable="true" title="Parentesco" style="width:20%;"/>
         <display:column value="Ver" href="PessoaDescricao.mtw" title="Opções" paramId="id" paramProperty="id" style="width:5%;"/>
         <display:column value="Alterar" href="PessoaShowForm.mtw" paramId="id" paramProperty="id" style="width:5%;"/>

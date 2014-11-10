@@ -34,6 +34,7 @@ public class FormaIngressoService implements BaseFormaIngressoService {
             FormaIngressoDAO dao = new FormaIngressoDAO();
             formaIngresso = dao.readById(id, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -50,6 +51,7 @@ public class FormaIngressoService implements BaseFormaIngressoService {
             FormaIngressoDAO dao = new FormaIngressoDAO();
             lista = dao.readByCriteria(criteria, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -65,6 +67,7 @@ public class FormaIngressoService implements BaseFormaIngressoService {
             FormaIngressoDAO dao = new FormaIngressoDAO();
             dao.update(pojo, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -79,6 +82,7 @@ public class FormaIngressoService implements BaseFormaIngressoService {
             FormaIngressoDAO dao = new FormaIngressoDAO();
             dao.delete(id, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();

@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
 <%@include file="../../WEB-INF/imports.jspf"%>
 <mtw:form klass="form-horizontal" action="PessoaCreate.mtw" method="post">
 <legend><strong>> 2. Cadastro de família/indíviduo > 2.2 Composição Familiar > 2.2.1 Membro familiar</strong></legend>

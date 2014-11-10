@@ -1,6 +1,8 @@
 package sias.model;
 
+import sias.model.base.service.BaseBeneficioDespesaService;
 import sias.model.base.service.BaseColaboradorService;
+import sias.model.base.service.BaseDeficienciaPessoaService;
 import sias.model.base.service.BaseFormaIngressoService;
 import sias.model.base.service.BaseMunicipioService;
 import sias.model.base.service.BasePessoaService;
@@ -12,7 +14,9 @@ import sias.model.base.service.BaseTipoOcupacaoService;
 import sias.model.base.service.BaseTipoParentescoService;
 import sias.model.base.service.BaseUfService;
 import sias.model.base.service.BaseUnidadeAtendimentoService;
+import sias.model.service.BeneficioDespesaService;
 import sias.model.service.ColaboradorService;
+import sias.model.service.DeficienciaPessoaService;
 import sias.model.service.FormaIngressoService;
 import sias.model.service.MunicipioService;
 import sias.model.service.PessoaService;
@@ -73,5 +77,13 @@ public class ServiceLocator {
     
     public static BaseUnidadeAtendimentoService getUnidadeAtendimentoService() {
         return new UnidadeAtendimentoService();
+    }
+    
+    public static BaseDeficienciaPessoaService getDeficienciaPessoaService(){
+        return new DeficienciaPessoaService();
+    }
+    
+    public static BaseBeneficioDespesaService getBeneficioDespesaService(){
+        return new BeneficioDespesaService();
     }
 }

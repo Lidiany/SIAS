@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
 <%@include file="../../WEB-INF/imports.jspf"%>
 <mtw:form klass="form-horizontal" action="PessoaCreate.mtw" method="post">
     <legend>Identificação</legend>
@@ -225,7 +225,7 @@
     <div class="control-group">
         <label class="control-label" for="inputComplementoendereco">Complemento do Endereço:</label>
         <div class="controls">
-            <mtw:input klass="span3" type="text" id="inputComplementoendereco" name="pessoa.complementoEndereco"/>
+            <mtw:input klass="span7" type="text" id="inputComplementoendereco" name="pessoa.complementoEndereco"/>
             <span class="label label-important">${error.complementoendereco}</span>
             <td>Bairro</td>
             <mtw:input klass="span3" type="text" id="inputBairro" name="pessoa.bairro"/>
@@ -320,7 +320,7 @@
     <div class="control-group">
         <label class="control-label" for="inputComplementohabitacional">Complemento das condições habitacionais:</label>
         <div class="controls">
-            <mtw:input type="text" id="inputComplementohabitacional" name="pessoa.complementoHabitacional"/>
+            <mtw:input type="text" klass="span10" id="inputComplementohabitacional" name="pessoa.complementoHabitacional"/>
             <span class="label label-important">${error.complementohabitacional}</span>
         </div>
     </div>

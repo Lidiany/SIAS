@@ -1,8 +1,6 @@
 package sias.model.pojo;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import sias.model.base.BasePOJO;
 
 public class BeneficioDespesa extends BasePOJO{
@@ -11,14 +9,9 @@ public class BeneficioDespesa extends BasePOJO{
     private Date dataTermino;
     private Float valor;
     private Date dataAtualizacao;
-    private List<TipoBeneficioDespesa> tipoBeneficioDespesas; 
-    private List<Pessoa> pessoas;
+    private TipoBeneficioDespesa tipoBeneficioDespesa; 
+    private Pessoa pessoa;
 
-    public BeneficioDespesa() {
-        this.tipoBeneficioDespesas = new ArrayList<TipoBeneficioDespesa>();
-        this.pessoas = new ArrayList<Pessoa>();
-    }
-    
     public Date getDataInicio() {
         return dataInicio;
     }
@@ -51,20 +44,23 @@ public class BeneficioDespesa extends BasePOJO{
         this.dataAtualizacao = dataAtualizacao;
     }
 
-    public List<TipoBeneficioDespesa> getTipoBeneficioDespesas() {
-        return tipoBeneficioDespesas;
+    public TipoBeneficioDespesa getTipoBeneficioDespesa() {
+        return tipoBeneficioDespesa;
     }
 
-    public void setTipoBeneficioDespesas(List<TipoBeneficioDespesa> tipoBeneficioDespesas) {
-        this.tipoBeneficioDespesas = tipoBeneficioDespesas;
+    public void setTipoBeneficioDespesa(TipoBeneficioDespesa tipoBeneficioDespesa) {
+        this.tipoBeneficioDespesa = tipoBeneficioDespesa;
     }
 
-    public List<Pessoa> getPessoas() {
-        return pessoas;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setPessoas(List<Pessoa> pessoas) {
-        this.pessoas = pessoas;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
+
+
+
 
 }

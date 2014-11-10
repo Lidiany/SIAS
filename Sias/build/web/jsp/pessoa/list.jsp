@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
 <%@include file="../../WEB-INF/imports.jspf"%>
 
 <legend><strong>1. Procura de família/indíviduo</strong></legend>
@@ -25,7 +25,7 @@
         <display:column class="pull-right" property="numeroOrdem" sortable="true" title="Número de Ordem" style="width:20%;"/>
         <display:column property="nome" sortable="true" title="Nome" style="width:30%;"/>
         <display:column property="sexoAsTexto" sortable="true" title="Sexo" style="width:10%;"/>
-        <display:column class="pull-right" property="pessoa.idade" sortable="true" title="Idade" style="width:10%;"/>
+        <display:column class="pull-right" property="idade" sortable="true" title="Idade" style="width:10%;"/>
         <display:column property="tipoParentesco.descricao" sortable="true" title="Parentesco" style="width:20%;"/>
         <display:column value="Ver" href="PessoaDescricaoFamilia.mtw" title="Opções" paramId="id" paramProperty="id" style="width:5%;"/>
         <display:column value="Consultar" href="PessoaComposicaoFamilia.mtw" paramId="id" paramProperty="id" style="width:5%;"/>

@@ -9,7 +9,7 @@ import sias.model.base.service.BaseMunicipioService;
 import sias.model.dao.MunicipioDAO;
 import sias.model.pojo.Municipio;
 
-public class MunicipioService implements BaseMunicipioService{
+public class MunicipioService implements BaseMunicipioService {
 
     @Override
     public void create(Municipio pojo) throws Exception {
@@ -34,6 +34,7 @@ public class MunicipioService implements BaseMunicipioService{
             MunicipioDAO dao = new MunicipioDAO();
             municipio = dao.readById(id, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -50,6 +51,7 @@ public class MunicipioService implements BaseMunicipioService{
             MunicipioDAO dao = new MunicipioDAO();
             lista = dao.readByCriteria(criteria, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -65,6 +67,7 @@ public class MunicipioService implements BaseMunicipioService{
             MunicipioDAO dao = new MunicipioDAO();
             dao.update(pojo, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -79,6 +82,7 @@ public class MunicipioService implements BaseMunicipioService{
             MunicipioDAO dao = new MunicipioDAO();
             dao.delete(id, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -94,11 +98,11 @@ public class MunicipioService implements BaseMunicipioService{
             if (nome == null || nome.isEmpty()) {
                 errors.put("nome", "*");
             }
-            
-/*            String uf = (String) properties.get("uf");
-            if (uf == null || uf.isEmpty()) {
-                errors.put("uf", "*");
-            }*/
+
+            /*            String uf = (String) properties.get("uf");
+             if (uf == null || uf.isEmpty()) {
+             errors.put("uf", "*");
+             }*/
         }
         return errors;
     }
@@ -107,5 +111,5 @@ public class MunicipioService implements BaseMunicipioService{
     public Map<String, String> validateForUpdate(Map<String, Object> properties) throws Exception {
         return this.validateForCreate(properties);
     }
-    
+
 }

@@ -9,7 +9,7 @@ import sias.model.base.service.BaseUfService;
 import sias.model.dao.UfDAO;
 import sias.model.pojo.Uf;
 
-public class UfService implements BaseUfService{
+public class UfService implements BaseUfService {
 
     @Override
     public void create(Uf pojo) throws Exception {
@@ -34,6 +34,7 @@ public class UfService implements BaseUfService{
             UfDAO dao = new UfDAO();
             uf = dao.readById(id, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -50,6 +51,7 @@ public class UfService implements BaseUfService{
             UfDAO dao = new UfDAO();
             lista = dao.readByCriteria(criteria, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -65,6 +67,7 @@ public class UfService implements BaseUfService{
             UfDAO dao = new UfDAO();
             dao.update(pojo, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -79,6 +82,7 @@ public class UfService implements BaseUfService{
             UfDAO dao = new UfDAO();
             dao.delete(id, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -106,5 +110,5 @@ public class UfService implements BaseUfService{
     public Map<String, String> validateForUpdate(Map<String, Object> properties) throws Exception {
         return this.validateForCreate(properties);
     }
-    
+
 }

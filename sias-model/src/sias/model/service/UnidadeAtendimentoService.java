@@ -9,7 +9,7 @@ import sias.model.base.service.BaseUnidadeAtendimentoService;
 import sias.model.dao.UnidadeAtendimentoDAO;
 import sias.model.pojo.UnidadeAtendimento;
 
-public class UnidadeAtendimentoService implements BaseUnidadeAtendimentoService{
+public class UnidadeAtendimentoService implements BaseUnidadeAtendimentoService {
 
     @Override
     public void create(UnidadeAtendimento pojo) throws Exception {
@@ -34,6 +34,7 @@ public class UnidadeAtendimentoService implements BaseUnidadeAtendimentoService{
             UnidadeAtendimentoDAO dao = new UnidadeAtendimentoDAO();
             unidadeAtendimento = dao.readById(id, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -50,6 +51,7 @@ public class UnidadeAtendimentoService implements BaseUnidadeAtendimentoService{
             UnidadeAtendimentoDAO dao = new UnidadeAtendimentoDAO();
             lista = dao.readByCriteria(criteria, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -65,6 +67,7 @@ public class UnidadeAtendimentoService implements BaseUnidadeAtendimentoService{
             UnidadeAtendimentoDAO dao = new UnidadeAtendimentoDAO();
             dao.update(pojo, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -79,6 +82,7 @@ public class UnidadeAtendimentoService implements BaseUnidadeAtendimentoService{
             UnidadeAtendimentoDAO dao = new UnidadeAtendimentoDAO();
             dao.delete(id, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -94,46 +98,46 @@ public class UnidadeAtendimentoService implements BaseUnidadeAtendimentoService{
             if (nome == null || nome.isEmpty()) {
                 errors.put("nome", "*");
             }
-/*            String numeroUnidade = (String) properties.get("numerounidade");
-            if (numeroUnidade == null || numeroUnidade.isEmpty()) {
-                errors.put("numerounidade", "*");
-            }
-            String resposavel = (String) properties.get("responsavel");
-            if (resposavel == null || resposavel.isEmpty()) {
-                errors.put("responsavel", "*");
-            }
-            String telefone = (String) properties.get("telefone");
-            if (telefone == null || telefone.isEmpty()) {
-                errors.put("telefone", "*");
-            }
-            String logradouro = (String) properties.get("logradouro");
-            if (logradouro == null || logradouro.isEmpty()) {
-                errors.put("logradouro", "*");
-            }
-            String numero = (String) properties.get("numero");
-            if (numero == null || numero.isEmpty()) {
-                errors.put("numero", "*");
-            }
-            String complementoEndereco = (String) properties.get("complementoendereco");
-            if (complementoEndereco == null || complementoEndereco.isEmpty()) {
-                errors.put("complementoendereco", "*");
-            }
-            String bairro = (String) properties.get("bairro");
-            if (bairro == null || bairro.isEmpty()) {
-                errors.put("bairro", "*");
-            }
-            String cep = (String) properties.get("cep");
-            if (cep == null || cep.isEmpty()) {
-                errors.put("cep", "*");
-            }            
-            String municipio = (String) properties.get("municipio");
-            if (municipio == null || municipio.isEmpty()) {
-                errors.put("municipio", "*");
-            }
-            String uf = (String) properties.get("uf");
-            if (uf == null || uf.isEmpty()) {
-                errors.put("uf", "*");
-            }*/
+            /*            String numeroUnidade = (String) properties.get("numerounidade");
+             if (numeroUnidade == null || numeroUnidade.isEmpty()) {
+             errors.put("numerounidade", "*");
+             }
+             String resposavel = (String) properties.get("responsavel");
+             if (resposavel == null || resposavel.isEmpty()) {
+             errors.put("responsavel", "*");
+             }
+             String telefone = (String) properties.get("telefone");
+             if (telefone == null || telefone.isEmpty()) {
+             errors.put("telefone", "*");
+             }
+             String logradouro = (String) properties.get("logradouro");
+             if (logradouro == null || logradouro.isEmpty()) {
+             errors.put("logradouro", "*");
+             }
+             String numero = (String) properties.get("numero");
+             if (numero == null || numero.isEmpty()) {
+             errors.put("numero", "*");
+             }
+             String complementoEndereco = (String) properties.get("complementoendereco");
+             if (complementoEndereco == null || complementoEndereco.isEmpty()) {
+             errors.put("complementoendereco", "*");
+             }
+             String bairro = (String) properties.get("bairro");
+             if (bairro == null || bairro.isEmpty()) {
+             errors.put("bairro", "*");
+             }
+             String cep = (String) properties.get("cep");
+             if (cep == null || cep.isEmpty()) {
+             errors.put("cep", "*");
+             }            
+             String municipio = (String) properties.get("municipio");
+             if (municipio == null || municipio.isEmpty()) {
+             errors.put("municipio", "*");
+             }
+             String uf = (String) properties.get("uf");
+             if (uf == null || uf.isEmpty()) {
+             errors.put("uf", "*");
+             }*/
         }
         return errors;
     }
@@ -142,5 +146,5 @@ public class UnidadeAtendimentoService implements BaseUnidadeAtendimentoService{
     public Map<String, String> validateForUpdate(Map<String, Object> properties) throws Exception {
         return this.validateForCreate(properties);
     }
-    
+
 }

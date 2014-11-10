@@ -9,7 +9,7 @@ import sias.model.base.service.BaseTipoParentescoService;
 import sias.model.dao.TipoParentescoDAO;
 import sias.model.pojo.TipoParentesco;
 
-public class TipoParentescoService implements BaseTipoParentescoService{
+public class TipoParentescoService implements BaseTipoParentescoService {
 
     @Override
     public void create(TipoParentesco pojo) throws Exception {
@@ -34,6 +34,7 @@ public class TipoParentescoService implements BaseTipoParentescoService{
             TipoParentescoDAO dao = new TipoParentescoDAO();
             tipoParentesco = dao.readById(id, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -50,6 +51,7 @@ public class TipoParentescoService implements BaseTipoParentescoService{
             TipoParentescoDAO dao = new TipoParentescoDAO();
             lista = dao.readByCriteria(criteria, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -65,6 +67,7 @@ public class TipoParentescoService implements BaseTipoParentescoService{
             TipoParentescoDAO dao = new TipoParentescoDAO();
             dao.update(pojo, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -79,6 +82,7 @@ public class TipoParentescoService implements BaseTipoParentescoService{
             TipoParentescoDAO dao = new TipoParentescoDAO();
             dao.delete(id, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -110,5 +114,5 @@ public class TipoParentescoService implements BaseTipoParentescoService{
     public Map<String, String> validateForUpdate(Map<String, Object> properties) throws Exception {
         return this.validateForCreate(properties);
     }
-    
+
 }

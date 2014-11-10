@@ -34,6 +34,7 @@ public class TipoEspecificidadeSocialService implements BaseTipoEspecificidadeSo
             TipoEspecificidadeSocialDAO dao = new TipoEspecificidadeSocialDAO();
             tipoEspecificidadeSocial = dao.readById(id, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -50,6 +51,7 @@ public class TipoEspecificidadeSocialService implements BaseTipoEspecificidadeSo
             TipoEspecificidadeSocialDAO dao = new TipoEspecificidadeSocialDAO();
             lista = dao.readByCriteria(criteria, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -65,6 +67,7 @@ public class TipoEspecificidadeSocialService implements BaseTipoEspecificidadeSo
             TipoEspecificidadeSocialDAO dao = new TipoEspecificidadeSocialDAO();
             dao.update(pojo, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -79,6 +82,7 @@ public class TipoEspecificidadeSocialService implements BaseTipoEspecificidadeSo
             TipoEspecificidadeSocialDAO dao = new TipoEspecificidadeSocialDAO();
             dao.delete(id, conn);
             conn.commit();
+            conn.close();
         } catch (Exception e) {
             conn.rollback();
             conn.close();
@@ -102,5 +106,5 @@ public class TipoEspecificidadeSocialService implements BaseTipoEspecificidadeSo
     public Map<String, String> validateForUpdate(Map<String, Object> properties) throws Exception {
         return this.validateForCreate(properties);
     }
-    
+
 }

@@ -1,5 +1,5 @@
 <%@include file="WEB-INF/imports.jspf" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
 <html>
     <head>
         <title>.::SIAS::. - Sistema de Informação de Assistência Social</title>

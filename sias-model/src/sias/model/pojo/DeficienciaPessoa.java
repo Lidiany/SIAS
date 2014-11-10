@@ -1,14 +1,12 @@
 package sias.model.pojo;
 
-import java.util.ArrayList;
-import java.util.List;
 import sias.model.base.BasePOJO;
 
 public class DeficienciaPessoa extends BasePOJO{
 
     private String descricao;
-    private List<TipoDeficiencia> tipoDeficiencias = new ArrayList<TipoDeficiencia>();
-    private List<Pessoa> pessoas = new ArrayList<Pessoa>();
+    private TipoDeficiencia tipoDeficiencia;
+    private Pessoa pessoa;
 
     public String getDescricao() {
         return descricao;
@@ -18,20 +16,21 @@ public class DeficienciaPessoa extends BasePOJO{
         this.descricao = descricao;
     }
 
-    public List<TipoDeficiencia> getTipoDeficiencias() {
-        return tipoDeficiencias;
+    public TipoDeficiencia getTipoDeficiencia() {
+        return tipoDeficiencia;
     }
 
-    public void setTipoDeficiencias(List<TipoDeficiencia> tipoDeficiencias) {
-        this.tipoDeficiencias = tipoDeficiencias;
+    public void setTipoDeficiencia(TipoDeficiencia tipoDeficiencia) {
+        this.tipoDeficiencia = tipoDeficiencia;
     }
 
-    public List<Pessoa> getPessoas() {
-        return pessoas;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setPessoas(List<Pessoa> pessoas) {
-        this.pessoas = pessoas;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
+
 
 }
